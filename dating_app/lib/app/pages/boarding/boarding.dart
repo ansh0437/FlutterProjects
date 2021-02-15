@@ -1,12 +1,13 @@
-import 'package:dating_app/app/pages/boarding/boarding_page.dart';
-import 'package:dating_app/app/widgets/curved_container.dart';
-import 'package:dating_app/app/widgets/slider/dots_indicator.dart';
-import 'package:dating_app/constants/numbers.dart';
-import 'package:dating_app/data/models/boarding_dto.dart';
+import 'package:dating_app/constants/pages.dart';
+import 'package:dating_app/data/preferences.dart';
 import 'package:flutter/material.dart';
 
+import '../../../app/pages/boarding/boarding_page.dart';
+import '../../../app/widgets/curved_container.dart';
+import '../../../app/widgets/slider/dots_indicator.dart';
 import '../../../constants/numbers.dart';
 import '../../../constants/strings.dart';
+import '../../../data/models/boarding_dto.dart';
 import '../base/base_stateful.dart';
 
 class Boarding extends BasePage {
@@ -68,7 +69,10 @@ class _BoardingState extends BaseState<Boarding> {
 
   Widget _buildGetStarted() {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        DatingPreference.boardingShowed.save(true);
+        pushClearPages(Pages.login);
+      },
       child: Padding(
         padding: const EdgeInsets.all(Doubles.four),
         child: Text(Strings.getStarted,

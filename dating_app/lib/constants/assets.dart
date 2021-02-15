@@ -5,3 +5,9 @@ class Images {
   static const boardingTwo = "${_imageAssets}boarding_two.png";
   static const boardingThree = "${_imageAssets}boarding_three.png";
 }
+
+class DaterIcons {
+  static const String _iconAssets = "assets/icons/";
+
+  static const logo = "${_iconAssets}logo.png";
+}

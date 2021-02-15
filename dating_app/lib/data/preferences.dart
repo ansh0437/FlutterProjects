@@ -3,7 +3,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 /*
  *  Dating app shared preferences.
  */
-enum DatingPreference { darkMode, hindiLanguage }
+enum DatingPreference {
+  darkMode,
+  hindiLanguage,
+  boardingShowed,
+}
 
 /*
  *  Dating app shared preference extension for retrieving data.

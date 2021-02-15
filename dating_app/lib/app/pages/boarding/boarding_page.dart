@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../base/base_stateless.dart';
 import '../../../constants/numbers.dart';
 import '../../../data/models/boarding_dto.dart';
+import '../base/base_stateless.dart';
 
 class BoardingPage extends BasePageStateless {
   final BoardingDTO mBoardingDTO;
@@ -30,10 +30,7 @@ class BoardingPage extends BasePageStateless {
             Expanded(
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: Doubles.sixteen),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Doubles.twenty),
-                ),
-                child: Image.asset(mBoardingDTO.image),
+                child: Image.asset(mBoardingDTO.image, fit: BoxFit.contain),
               ),
             ),
             Container(

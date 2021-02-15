@@ -42,7 +42,8 @@ class DatingApp extends BasePageStateless {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: LocalizedStrings.delegate.supportedLocales,
-      initialRoute: Pages.boarding,
+      initialRoute:
+          DatingPreference.boardingShowed.boolean ? Pages.boarding : Pages.login,
       routes: DatingNavigator.routes,
     );
   }
