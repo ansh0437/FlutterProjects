@@ -1,0 +1,17 @@
+[
+    {
+        "title": "Discover People",
+        "description": "Find like minded people to connect with",
+        "image": "assets/images/boarding_one.png"
+    },
+    {
+        "title": "Match with them",
+        "description": "See who you like and who likes you and connect with them",
+        "image": "assets/images/boarding_two.png"
+    },
+    {
+        "title": "Chat with them",
+        "description": "Chat with your favorite people who you connected with",
+        "image": "assets/images/boarding_three.png"
+    }
+]
