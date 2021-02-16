@@ -1,10 +1,12 @@
-import 'package:dating_app/app/widgets/curved_container.dart';
-import 'package:dating_app/constants/assets.dart';
-import 'package:dating_app/constants/colors.dart';
-import 'package:dating_app/constants/strings.dart';
 import 'package:flutter/material.dart';
 
+import '../../../constants/assets.dart';
+import '../../../constants/colors.dart';
 import '../../../constants/numbers.dart';
+import '../../../constants/pages.dart';
+import '../../../constants/strings.dart';
+import '../../../generated/l10n.dart';
+import '../../widgets/curved_container.dart';
 import '../base/base_stateful.dart';
 
 class LoginPage extends BasePage {
@@ -16,6 +18,14 @@ class _LoginPageState extends BaseState<LoginPage> {
   @override
   void initState() {
     super.initState();
+  }
+
+  void _loginWithPhone() {
+    pushPage(Pages.rules, data: Pages.loginWithPhone);
+  }
+
+  void _loginWithEmail() {
+    pushPage(Pages.rules, data: Pages.loginWithEmail);
   }
 
   @override
@@ -71,34 +81,38 @@ class _LoginPageState extends BaseState<LoginPage> {
                           _buildTermsPolicyText(),
                           Container(
                             width: getWidth(),
+                            height: Doubles.fortyEight,
                             margin: EdgeInsets.symmetric(
                               vertical: Doubles.twentyFour,
                               horizontal: Doubles.fortyEight,
                             ),
                             child: RaisedButton.icon(
-                              onPressed: () {},
+                              onPressed: _loginWithPhone,
                               icon: Icon(Icons.phone),
                               color: AppColors.white,
-                              label: Text("Login with phone number"),
+                              label: Text(
+                                  LocalizedStrings.of(context).loginWithPhone),
                               shape: RoundedRectangleBorder(
                                 borderRadius:
-                                    BorderRadius.circular(Doubles.sixteen),
+                                    BorderRadius.circular(Doubles.twentyFour),
                               ),
                             ),
                           ),
                           Container(
                             width: getWidth(),
+                            height: Doubles.fortyEight,
                             margin: EdgeInsets.symmetric(
                               horizontal: Doubles.fortyEight,
                             ),
                             child: RaisedButton.icon(
-                              onPressed: () {},
+                              onPressed: _loginWithEmail,
                               icon: Icon(Icons.email),
                               color: AppColors.white,
-                              label: Text("Login with email address"),
+                              label: Text(
+                                  LocalizedStrings.of(context).loginWithEmail),
                               shape: RoundedRectangleBorder(
                                 borderRadius:
-                                    BorderRadius.circular(Doubles.sixteen),
+                                    BorderRadius.circular(Doubles.twentyFour),
                               ),
                             ),
                           )
@@ -120,9 +134,7 @@ Widget _buildTermsPolicyText() {
   return Container(
     width: Doubles.threeForty,
     margin: EdgeInsets.only(top: Doubles.thirtyTwo),
-    padding: const EdgeInsets.symmetric(
-      vertical: Doubles.twentyFour,
-    ),
+    padding: EdgeInsets.symmetric(vertical: Doubles.twentyFour),
     child: RichText(
       textAlign: TextAlign.center,
       text: TextSpan(

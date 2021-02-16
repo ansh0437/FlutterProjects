@@ -44,6 +44,136 @@ class LocalizedStrings {
       args: [],
     );
   }
+
+  /// `Login with phone number`
+  String get loginWithPhone {
+    return Intl.message(
+      'Login with phone number',
+      name: 'loginWithPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login with email address`
+  String get loginWithEmail {
+    return Intl.message(
+      'Login with email address',
+      name: 'loginWithEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to Dater`
+  String get ruleTitle {
+    return Intl.message(
+      'Welcome to Dater',
+      name: 'ruleTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please follow these club rules when using the app.`
+  String get ruleDesc {
+    return Intl.message(
+      'Please follow these club rules when using the app.',
+      name: 'ruleDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Be yourself.`
+  String get ruleOneTitle {
+    return Intl.message(
+      'Be yourself.',
+      name: 'ruleOneTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload only your own photos, age and bio that's yours`
+  String get ruleOneDesc {
+    return Intl.message(
+      'Upload only your own photos, age and bio that\'s yours',
+      name: 'ruleOneDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Be cool.`
+  String get ruleTwoTitle {
+    return Intl.message(
+      'Be cool.',
+      name: 'ruleTwoTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stay chill and treat others with respect and dignity`
+  String get ruleTwoDesc {
+    return Intl.message(
+      'Stay chill and treat others with respect and dignity',
+      name: 'ruleTwoDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Be safe.`
+  String get ruleThreeTitle {
+    return Intl.message(
+      'Be safe.',
+      name: 'ruleThreeTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't give out personal info too quickly. Guage analyse and date safely`
+  String get ruleThreeDesc {
+    return Intl.message(
+      'Don\'t give out personal info too quickly. Guage analyse and date safely',
+      name: 'ruleThreeDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Be active.`
+  String get ruleFourTitle {
+    return Intl.message(
+      'Be active.',
+      name: 'ruleFourTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report other's rude or bad behaviour actively so we can keep it safe`
+  String get ruleFourDesc {
+    return Intl.message(
+      'Report other\'s rude or bad behaviour actively so we can keep it safe',
+      name: 'ruleFourDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I Understand`
+  String get iUnderstand {
+    return Intl.message(
+      'I Understand',
+      name: 'iUnderstand',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<LocalizedStrings> {

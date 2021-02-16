@@ -21,6 +21,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "appName" : MessageLookupByLibrary.simpleMessage("Dating")
+    "appName" : MessageLookupByLibrary.simpleMessage("Dating"),
+    "iUnderstand" : MessageLookupByLibrary.simpleMessage("I Understand"),
+    "loginWithEmail" : MessageLookupByLibrary.simpleMessage("Login with email address"),
+    "loginWithPhone" : MessageLookupByLibrary.simpleMessage("Login with phone number"),
+    "ruleDesc" : MessageLookupByLibrary.simpleMessage("Please follow these club rules when using the app."),
+    "ruleFourDesc" : MessageLookupByLibrary.simpleMessage("Report other\'s rude or bad behaviour actively so we can keep it safe"),
+    "ruleFourTitle" : MessageLookupByLibrary.simpleMessage("Be active."),
+    "ruleOneDesc" : MessageLookupByLibrary.simpleMessage("Upload only your own photos, age and bio that\'s yours"),
+    "ruleOneTitle" : MessageLookupByLibrary.simpleMessage("Be yourself."),
+    "ruleThreeDesc" : MessageLookupByLibrary.simpleMessage("Don\'t give out personal info too quickly. Guage analyse and date safely"),
+    "ruleThreeTitle" : MessageLookupByLibrary.simpleMessage("Be safe."),
+    "ruleTitle" : MessageLookupByLibrary.simpleMessage("Welcome to Dater"),
+    "ruleTwoDesc" : MessageLookupByLibrary.simpleMessage("Stay chill and treat others with respect and dignity"),
+    "ruleTwoTitle" : MessageLookupByLibrary.simpleMessage("Be cool.")
   };
 }

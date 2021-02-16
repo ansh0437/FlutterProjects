@@ -1,4 +1,17 @@
 {
   "@@locale": "en",
-  "appName": "Dating"
+  "appName": "Dating",
+  "loginWithPhone": "Login with phone number",
+  "loginWithEmail": "Login with email address",
+  "ruleTitle": "Welcome to Dater",
+  "ruleDesc": "Please follow these club rules when using the app.",
+  "ruleOneTitle": "Be yourself.",
+  "ruleOneDesc": "Upload only your own photos, age and bio that's yours",
+  "ruleTwoTitle": "Be cool.",
+  "ruleTwoDesc": "Stay chill and treat others with respect and dignity",
+  "ruleThreeTitle": "Be safe.",
+  "ruleThreeDesc": "Don't give out personal info too quickly. Guage analyse and date safely",
+  "ruleFourTitle": "Be active.",
+  "ruleFourDesc": "Report other's rude or bad behaviour actively so we can keep it safe",
+  "iUnderstand": "I Understand"
 }

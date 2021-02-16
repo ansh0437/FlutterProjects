@@ -1,7 +1,7 @@
-import 'package:dating_app/constants/colors.dart';
-import 'package:dating_app/constants/numbers.dart';
 import 'package:flutter/material.dart';
 
+import '../../constants/colors.dart';
+import '../../constants/numbers.dart';
 import '../pages/base/base_stateless.dart';
 
 class CurvedContainer extends BasePageStateless {
@@ -55,14 +55,14 @@ class BottomCurvedPainter extends CustomPainter {
 
     var path = Path();
 
-    path.moveTo(0, size.height * 0.4667);
-    
-    path.quadraticBezierTo(size.width * 0.25, size.height * 0.375,
-        size.width * 0.5, size.height * 0.4167);
-    
-    path.quadraticBezierTo(size.width * 0.75, size.height * 0.4544,
-        size.width * 1.0, size.height * 0.3467);
-    
+    path.moveTo(0, size.height * 0.417);
+
+    path.quadraticBezierTo(size.width * 0.25, size.height * 0.325,
+        size.width * 0.5, size.height * 0.367);
+
+    path.quadraticBezierTo(size.width * 0.75, size.height * 0.404,
+        size.width * 1.0, size.height * 0.297);
+
     path.lineTo(size.width, size.height);
 
     path.lineTo(0, size.height);
@@ -71,7 +71,5 @@ class BottomCurvedPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return true;
-  }
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }

@@ -7,6 +7,7 @@ enum DatingPreference {
   darkMode,
   hindiLanguage,
   boardingShowed,
+  rulesAccepted,
 }
 
 /*

@@ -1,6 +1,6 @@
-import 'package:dating_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../../constants/colors.dart';
 import '../../../constants/numbers.dart';
 import '../../../data/models/boarding_dto.dart';
 import '../base/base_stateless.dart';

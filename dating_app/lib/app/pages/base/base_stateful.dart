@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dating_app/constants/colors.dart';
+import 'package:dating_app/constants/numbers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -11,9 +12,11 @@ abstract class BasePage extends StatefulWidget {
 abstract class BaseState<T extends BasePage> extends State<T> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  double getWidth() => MediaQuery.of(context).size.width;
+  double getWidth({double percentage = Percentage.hundred}) =>
+      MediaQuery.of(context).size.width * percentage;
 
-  double getHeight() => MediaQuery.of(context).size.height;
+  double getHeight({double percentage = Percentage.hundred}) =>
+      MediaQuery.of(context).size.height * percentage;
 
   SystemUiOverlayStyle _statusBarStyle(bool darkScreen) {
     if (Platform.isAndroid) {
