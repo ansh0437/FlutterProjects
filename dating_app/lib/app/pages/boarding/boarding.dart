@@ -1,3 +1,4 @@
+import 'package:dating_app/constants/colors.dart';
 import 'package:dating_app/constants/pages.dart';
 import 'package:dating_app/data/preferences.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +27,8 @@ class _BoardingState extends BaseState<Boarding> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: willPop,
-      child: Scaffold(
-        key: scaffoldKey,
+      child: buildScaffold(
+        darkScreen: true,
         body: Stack(
           children: [
             CurvedContainer(width: getWidth(), height: getHeight()),
@@ -77,7 +78,7 @@ class _BoardingState extends BaseState<Boarding> {
         padding: const EdgeInsets.all(Doubles.four),
         child: Text(Strings.getStarted,
             style: TextStyle(
-              color: Colors.red,
+              color: AppColors.red,
               fontSize: Doubles.twenty,
               fontWeight: FontWeight.bold,
             )),
@@ -90,7 +91,7 @@ class _BoardingState extends BaseState<Boarding> {
       padding: const EdgeInsets.all(Doubles.ten),
       child: DotsIndicator(
         controller: widget.mPageController,
-        color: Colors.red,
+        color: AppColors.red,
         itemCount: widget.mBoardingList.length,
       ),
     );

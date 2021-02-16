@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:dating_app/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 abstract class BasePage extends StatefulWidget {
   BasePage({Key key}) : super(key: key);
@@ -10,6 +14,31 @@ abstract class BaseState<T extends BasePage> extends State<T> {
   double getWidth() => MediaQuery.of(context).size.width;
 
   double getHeight() => MediaQuery.of(context).size.height;
+
+  SystemUiOverlayStyle _statusBarStyle(bool darkScreen) {
+    if (Platform.isAndroid) {
+      return SystemUiOverlayStyle(
+        statusBarColor: darkScreen ? AppColors.transparent : AppColors.white,
+        statusBarBrightness: darkScreen ? Brightness.light : Brightness.dark,
+        statusBarIconBrightness:
+            darkScreen ? Brightness.light : Brightness.dark,
+      );
+    } else {
+      return darkScreen
+          ? SystemUiOverlayStyle.light
+          : SystemUiOverlayStyle.dark;
+    }
+  }
+
+  Widget buildScaffold({bool darkScreen = false, Widget body}) {
+    return AnnotatedRegion(
+      value: _statusBarStyle(darkScreen),
+      child: Scaffold(
+        key: scaffoldKey,
+        body: body,
+      ),
+    );
+  }
 
   Future<bool> willPop() async {
     return true;

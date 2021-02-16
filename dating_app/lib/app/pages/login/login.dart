@@ -1,3 +1,4 @@
+import 'package:dating_app/app/widgets/curved_container.dart';
 import 'package:dating_app/constants/assets.dart';
 import 'package:dating_app/constants/colors.dart';
 import 'package:dating_app/constants/strings.dart';
@@ -21,10 +22,14 @@ class _LoginPageState extends BaseState<LoginPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: willPop,
-      child: Scaffold(
-        key: scaffoldKey,
+      child: buildScaffold(
         body: Stack(
           children: [
+            Container(
+              width: getWidth(),
+              height: getHeight(),
+              child: CustomPaint(painter: BottomCurvedPainter()),
+            ),
             SafeArea(
               bottom: false,
               child: Column(
@@ -32,6 +37,7 @@ class _LoginPageState extends BaseState<LoginPage> {
                   Expanded(
                     flex: Ints.two,
                     child: Container(
+                      width: getWidth(),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -59,7 +65,6 @@ class _LoginPageState extends BaseState<LoginPage> {
                   Expanded(
                     flex: Ints.three,
                     child: Container(
-                      color: Colors.blue,
                       width: getWidth(),
                       child: Column(
                         children: [
@@ -114,6 +119,7 @@ class _LoginPageState extends BaseState<LoginPage> {
 Widget _buildTermsPolicyText() {
   return Container(
     width: Doubles.threeForty,
+    margin: EdgeInsets.only(top: Doubles.thirtyTwo),
     padding: const EdgeInsets.symmetric(
       vertical: Doubles.twentyFour,
     ),

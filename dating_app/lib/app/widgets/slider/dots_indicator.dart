@@ -6,7 +6,7 @@ class DotsIndicator extends AnimatedWidget {
   DotsIndicator({
     this.controller,
     this.itemCount,
-    this.color: Colors.white,
+    this.color,
   }) : super(listenable: controller);
 
   /// The PageController that this DotsIndicator is representing.
@@ -16,8 +16,6 @@ class DotsIndicator extends AnimatedWidget {
   final int itemCount;
 
   /// The color of the dots.
-  ///
-  /// Defaults to `Colors.white`.
   final Color color;
 
   // The base size of the dots

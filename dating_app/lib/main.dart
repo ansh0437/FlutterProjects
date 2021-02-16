@@ -43,7 +43,7 @@ class DatingApp extends BasePageStateless {
       ],
       supportedLocales: LocalizedStrings.delegate.supportedLocales,
       initialRoute:
-          DatingPreference.boardingShowed.boolean ? Pages.boarding : Pages.login,
+          DatingPreference.boardingShowed.boolean ? Pages.login : Pages.boarding,
       routes: DatingNavigator.routes,
     );
   }

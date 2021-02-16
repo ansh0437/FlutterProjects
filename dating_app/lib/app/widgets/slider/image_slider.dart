@@ -1,3 +1,4 @@
+import 'package:dating_app/constants/colors.dart';
 import 'package:dating_app/constants/numbers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +69,7 @@ class ImageSliderState extends State<ImageSlider> {
   Widget _buildDotsIndicatorOverlay() {
     return DotsIndicator(
       controller: _controller,
-      color: Colors.red,
+      color: AppColors.red,
       itemCount: widget.images.length,
     );
   }

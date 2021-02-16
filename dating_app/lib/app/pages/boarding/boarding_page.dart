@@ -1,3 +1,4 @@
+import 'package:dating_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/numbers.dart';
@@ -21,7 +22,7 @@ class BoardingPage extends BasePageStateless {
               child: Text(
                 mBoardingDTO.title,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: AppColors.white,
                   fontSize: Doubles.thirtySix,
                   fontWeight: FontWeight.bold,
                 ),
@@ -39,7 +40,7 @@ class BoardingPage extends BasePageStateless {
                 mBoardingDTO.description,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.grey.shade700,
+                  color: AppColors.grey,
                   fontSize: Doubles.twenty,
                 ),
               ),
