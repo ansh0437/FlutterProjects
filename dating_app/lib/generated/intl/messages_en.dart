@@ -23,7 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "appName" : MessageLookupByLibrary.simpleMessage("Dating"),
     "iUnderstand" : MessageLookupByLibrary.simpleMessage("I Understand"),
-    "loginWithEmail" : MessageLookupByLibrary.simpleMessage("Login with email address"),
+    "loginWithGoogle" : MessageLookupByLibrary.simpleMessage("Login with google"),
     "loginWithPhone" : MessageLookupByLibrary.simpleMessage("Login with phone number"),
     "ruleDesc" : MessageLookupByLibrary.simpleMessage("Please follow these club rules when using the app."),
     "ruleFourDesc" : MessageLookupByLibrary.simpleMessage("Report other\'s rude or bad behaviour actively so we can keep it safe"),

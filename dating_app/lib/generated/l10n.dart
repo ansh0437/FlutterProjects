@@ -55,11 +55,11 @@ class LocalizedStrings {
     );
   }
 
-  /// `Login with email address`
-  String get loginWithEmail {
+  /// `Login with google`
+  String get loginWithGoogle {
     return Intl.message(
-      'Login with email address',
-      name: 'loginWithEmail',
+      'Login with google',
+      name: 'loginWithGoogle',
       desc: '',
       args: [],
     );

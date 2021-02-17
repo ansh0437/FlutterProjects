@@ -1,3 +1,4 @@
+import 'package:dating_app/constants/numbers.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
@@ -26,4 +27,15 @@ final lightTheme = ThemeData(
   dividerColor: Colors.white54,
   buttonTheme: ButtonThemeData(buttonColor: Colors.blue.shade300),
   bottomAppBarColor: Colors.blueGrey.shade50,
+  inputDecorationTheme: InputDecorationTheme(
+    border: OutlineInputBorder(
+      borderSide: BorderSide(color: AppColors.grey),
+      borderRadius: BorderRadius.circular(Doubles.eight),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: AppColors.grey),
+      borderRadius: BorderRadius.circular(Doubles.eight),
+    ),
+    labelStyle: TextStyle(color: AppColors.grey),
+  ),
 );

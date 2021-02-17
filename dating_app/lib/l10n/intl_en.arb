@@ -2,7 +2,7 @@
   "@@locale": "en",
   "appName": "Dating",
   "loginWithPhone": "Login with phone number",
-  "loginWithEmail": "Login with email address",
+  "loginWithGoogle": "Login with google",
   "ruleTitle": "Welcome to Dater",
   "ruleDesc": "Please follow these club rules when using the app.",
   "ruleOneTitle": "Be yourself.",

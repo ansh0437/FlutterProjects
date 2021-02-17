@@ -1,4 +1,4 @@
-class Images {
+class DaterImages {
   static const String _imageAssets = "assets/images/";
 
   static const boardingOne = "${_imageAssets}boarding_one.png";
@@ -10,4 +10,10 @@ class DaterIcons {
   static const String _iconAssets = "assets/icons/";
 
   static const logo = "${_iconAssets}logo.png";
+}
+
+class DaterJson {
+  static const String _jsonAssets = "assets/json/";
+
+  static const countryCodes = "${_jsonAssets}country_code.json";
 }

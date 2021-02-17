@@ -61,7 +61,7 @@ class BottomCurvedPainter extends CustomPainter {
         size.width * 0.5, size.height * 0.367);
 
     path.quadraticBezierTo(size.width * 0.75, size.height * 0.404,
-        size.width * 1.0, size.height * 0.297);
+        size.width * 1.0, size.height * 0.317);
 
     path.lineTo(size.width, size.height);
 

@@ -1,3 +1,4 @@
+import 'package:dating_app/constants/pages.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/assets.dart';
@@ -13,19 +14,14 @@ class RulesPage extends BasePage {
 }
 
 class _RulesPageState extends BaseState<RulesPage> {
-  String _nextPageRoute;
-
   void _onClick() {
     /// TODO
     // DatingPreference.rulesAccepted.save(true);
-    printLog(_nextPageRoute);
-    // replacePage(_nextPageRoute);
+    replacePage(Pages.loginWithPhone);
   }
 
   @override
   Widget build(BuildContext context) {
-    _nextPageRoute = ModalRoute.of(context).settings.arguments as String;
-
     return WillPopScope(
       onWillPop: willPop,
       child: buildScaffold(
@@ -40,7 +36,10 @@ class _RulesPageState extends BaseState<RulesPage> {
                   Align(
                     alignment: Alignment.topLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(Doubles.sixteen),
+                      padding: const EdgeInsets.only(
+                        left: Doubles.sixteen,
+                        top: Doubles.sixteen,
+                      ),
                       child: InkWell(
                         onTap: closePage,
                         child: Icon(
@@ -53,15 +52,15 @@ class _RulesPageState extends BaseState<RulesPage> {
                   ),
                   Image.asset(
                     DaterIcons.logo,
-                    width: Doubles.sixtyFour,
-                    height: Doubles.sixtyFour,
+                    width: Doubles.sixty,
+                    height: Doubles.sixty,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(Doubles.eight),
                     child: Text(
                       LocalizedStrings.of(context).ruleTitle,
                       style: TextStyle(
-                        fontSize: Doubles.thirty,
+                        fontSize: Doubles.twentyEight,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -72,7 +71,7 @@ class _RulesPageState extends BaseState<RulesPage> {
                       LocalizedStrings.of(context).ruleDesc,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: Doubles.eighteen,
+                        fontSize: Doubles.sixteen,
                       ),
                     ),
                   ),
@@ -90,16 +89,6 @@ class _RulesPageState extends BaseState<RulesPage> {
                   //     ),
                   //   ],
                   // ),
-                  _buildRuleBox(
-                    title: LocalizedStrings.of(context).ruleOneTitle,
-                    description: LocalizedStrings.of(context).ruleOneDesc,
-                  ),
-                  SizedBox(height: Doubles.eight),
-                  _buildRuleBox(
-                    title: LocalizedStrings.of(context).ruleTwoTitle,
-                    description: LocalizedStrings.of(context).ruleTwoDesc,
-                  ),
-                  SizedBox(height: Doubles.eight),
                   // Row(
                   //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   //   children: [
@@ -113,6 +102,16 @@ class _RulesPageState extends BaseState<RulesPage> {
                   //     ),
                   //   ],
                   // ),
+                  _buildRuleBox(
+                    title: LocalizedStrings.of(context).ruleOneTitle,
+                    description: LocalizedStrings.of(context).ruleOneDesc,
+                  ),
+                  SizedBox(height: Doubles.eight),
+                  _buildRuleBox(
+                    title: LocalizedStrings.of(context).ruleTwoTitle,
+                    description: LocalizedStrings.of(context).ruleTwoDesc,
+                  ),
+                  SizedBox(height: Doubles.eight),
                   _buildRuleBox(
                     title: LocalizedStrings.of(context).ruleThreeTitle,
                     description: LocalizedStrings.of(context).ruleThreeDesc,
@@ -175,7 +174,7 @@ class _RulesPageState extends BaseState<RulesPage> {
             ),
             margin: EdgeInsets.symmetric(vertical: Doubles.eight),
             padding: EdgeInsets.symmetric(
-              vertical: Doubles.sixteen,
+              vertical: Doubles.ten,
               horizontal: Doubles.eight,
             ),
             child: Text(

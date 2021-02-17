@@ -1,3 +1,4 @@
+import 'package:dating_app/data/preferences.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/assets.dart';
@@ -21,12 +22,14 @@ class _LoginPageState extends BaseState<LoginPage> {
   }
 
   void _loginWithPhone() {
-    pushPage(Pages.rules, data: Pages.loginWithPhone);
+    if (DatingPreference.rulesAccepted.boolean) {
+      pushPage(Pages.loginWithPhone);
+    } else {
+      pushPage(Pages.rules);
+    }
   }
 
-  void _loginWithEmail() {
-    pushPage(Pages.rules, data: Pages.loginWithEmail);
-  }
+  void _loginWithGoogle() {}
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +94,10 @@ class _LoginPageState extends BaseState<LoginPage> {
                               icon: Icon(Icons.phone),
                               color: AppColors.white,
                               label: Text(
-                                  LocalizedStrings.of(context).loginWithPhone),
+                                LocalizedStrings.of(context)
+                                    .loginWithPhone
+                                    .toUpperCase(),
+                              ),
                               shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.circular(Doubles.twentyFour),
@@ -105,11 +111,14 @@ class _LoginPageState extends BaseState<LoginPage> {
                               horizontal: Doubles.fortyEight,
                             ),
                             child: RaisedButton.icon(
-                              onPressed: _loginWithEmail,
+                              onPressed: _loginWithGoogle,
                               icon: Icon(Icons.email),
                               color: AppColors.white,
                               label: Text(
-                                  LocalizedStrings.of(context).loginWithEmail),
+                                LocalizedStrings.of(context)
+                                    .loginWithGoogle
+                                    .toUpperCase(),
+                              ),
                               shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.circular(Doubles.twentyFour),

@@ -51,8 +51,8 @@ abstract class BaseState<T extends BasePage> extends State<T> {
     return false;
   }
 
-  void closePage() {
-    Navigator.of(context).pop();
+  void closePage({data}) {
+    Navigator.of(context).pop(data);
   }
 
   void pushPage(String routeName, {Object data}) {
