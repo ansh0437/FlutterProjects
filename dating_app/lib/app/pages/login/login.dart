@@ -1,4 +1,3 @@
-import 'package:dating_app/data/preferences.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/assets.dart';
@@ -6,6 +5,7 @@ import '../../../constants/colors.dart';
 import '../../../constants/numbers.dart';
 import '../../../constants/pages.dart';
 import '../../../constants/strings.dart';
+import '../../../data/preferences.dart';
 import '../../../generated/l10n.dart';
 import '../../widgets/curved_container.dart';
 import '../base/base_stateful.dart';

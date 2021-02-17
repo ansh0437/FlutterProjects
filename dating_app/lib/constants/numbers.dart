@@ -36,6 +36,7 @@ class Doubles {
   static const double ninety = 90.0;
   static const double ninetySix = 96.0;
   static const double hundred = 100.0;
+  static const double hundredTwenty = 120.0;
   static const double threeTwenty = 320.0;
   static const double threeForty = 340.0;
 }

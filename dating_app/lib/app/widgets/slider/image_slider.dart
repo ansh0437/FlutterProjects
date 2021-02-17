@@ -1,8 +1,8 @@
-import 'package:dating_app/constants/colors.dart';
-import 'package:dating_app/constants/numbers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../constants/colors.dart';
+import '../../../constants/numbers.dart';
 import 'dots_indicator.dart';
 
 class ImageSlider extends StatefulWidget {

@@ -1,7 +1,7 @@
-import 'package:dating_app/constants/numbers.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
+import '../../constants/numbers.dart';
 
 final darkTheme = ThemeData(
   primarySwatch: Colors.grey,

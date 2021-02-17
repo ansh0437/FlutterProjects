@@ -1,4 +1,4 @@
-import 'package:dating_app/constants/assets.dart';
+import '../../constants/assets.dart';
 
 class BoardingDTO {
   String title;

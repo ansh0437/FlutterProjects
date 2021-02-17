@@ -1,12 +1,14 @@
 import 'dart:convert';
 
-import 'package:dating_app/app/pages/base/base_stateful.dart';
-import 'package:dating_app/app/pages/base/base_stateless.dart';
-import 'package:dating_app/constants/assets.dart';
-import 'package:dating_app/constants/colors.dart';
-import 'package:dating_app/constants/numbers.dart';
-import 'package:dating_app/data/models/country_code_dto.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../../../constants/assets.dart';
+import '../../../constants/colors.dart';
+import '../../../constants/numbers.dart';
+import '../../../data/models/country_code_dto.dart';
+import '../base/base_stateful.dart';
+import '../base/base_stateless.dart';
 
 class CountrySelectorPage extends BasePage {
   @override
@@ -14,7 +16,10 @@ class CountrySelectorPage extends BasePage {
 }
 
 class _CountrySelectorPageState extends BaseState<CountrySelectorPage> {
+  final TextEditingController _searchController = TextEditingController();
+
   List<CountryCodeDTO> mCountryList = [];
+  List<CountryCodeDTO> mFilterList = [];
 
   @override
   void initState() {
@@ -34,6 +39,22 @@ class _CountrySelectorPageState extends BaseState<CountrySelectorPage> {
 
     setState(() {
       mCountryList = list;
+      mFilterList = list;
+    });
+  }
+
+  void _searchCountryCode(String value) {
+    List<CountryCodeDTO> list = [];
+    if (value.isNotEmpty) {
+      list = mCountryList
+          .where(
+              (e) => e.countryName.toLowerCase().contains(value.toLowerCase()))
+          .toList();
+    } else {
+      list = mCountryList;
+    }
+    setState(() {
+      mFilterList = list;
     });
   }
 
@@ -46,38 +67,65 @@ class _CountrySelectorPageState extends BaseState<CountrySelectorPage> {
     return WillPopScope(
       onWillPop: willPop,
       child: buildScaffold(
-        body: SafeArea(
-          child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                    left: Doubles.sixteen,
-                    top: Doubles.sixteen,
-                  ),
-                  child: InkWell(
-                    onTap: closePage,
-                    child: Icon(
-                      Icons.keyboard_backspace,
-                      color: AppColors.red,
-                      size: Doubles.thirtySix,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    itemCount: mCountryList.length,
-                    itemBuilder: (context, index) => _CountryCodeCell(
-                      data: mCountryList[index],
-                      onSelect: _onCountryCellClick,
-                    ),
-                  ),
-                ),
-              ],
+        darkScreen: true,
+        appBar: AppBar(
+          backgroundColor: AppColors.white,
+          leading: InkWell(
+            onTap: closePage,
+            child: Icon(
+              Icons.keyboard_backspace,
+              color: AppColors.black,
+              size: Doubles.thirtySix,
             ),
           ),
+          title: TextField(
+            controller: _searchController,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              errorBorder: InputBorder.none,
+              disabledBorder: InputBorder.none,
+              contentPadding: EdgeInsets.all(Doubles.sixteen),
+              hintText: "Search...",
+              hintStyle: TextStyle(
+                fontSize: Doubles.twenty,
+                color: AppColors.black,
+              ),
+            ),
+            style: TextStyle(
+              fontSize: Doubles.twenty,
+              color: AppColors.black,
+            ),
+            keyboardType: TextInputType.name,
+            inputFormatters: [FilteringTextInputFormatter.singleLineFormatter],
+            onChanged: _searchCountryCode,
+          ),
+        ),
+        body: SafeArea(
+          child: Container(
+              child: mFilterList.isNotEmpty
+                  ? ListView.builder(
+                      physics: BouncingScrollPhysics(),
+                      itemCount: mFilterList.length,
+                      itemBuilder: (context, index) => _CountryCodeCell(
+                        data: mFilterList[index],
+                        onSelect: _onCountryCellClick,
+                      ),
+                    )
+                  : Container(
+                      padding: EdgeInsets.all(Doubles.twentyFour),
+                      child: Center(
+                        child: Text(
+                          "No result found",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: AppColors.black,
+                            fontSize: Doubles.twentyFour,
+                          ),
+                        ),
+                      ),
+                    )),
         ),
       ),
     );
@@ -98,7 +146,6 @@ class _CountryCodeCell extends BasePageStateless {
         onSelect(data);
       },
       child: Container(
-        // color: AppColors.green,
         margin: EdgeInsets.all(Doubles.eight),
         padding: EdgeInsets.symmetric(
           horizontal: Doubles.twentyFour,
@@ -112,8 +159,6 @@ class _CountryCodeCell extends BasePageStateless {
               child: Container(
                 child: Text(
                   data.countryName,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontSize: Doubles.eighteen,
                   ),

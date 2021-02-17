@@ -4,4 +4,5 @@ class Pages {
   static final String rules = "/rules";
   static final String loginWithPhone = "/loginPhone";
   static final String loginWithEmail = "/loginEmail";
+  static final String otp = "/otp";
 }

@@ -10,6 +10,7 @@ class AppColors {
   static Color white = Colors.white;
   static Color grey = Colors.grey.shade700;
   static Color greyLight = Colors.grey.shade500;
+  static Color greyLightest = Colors.grey.shade200;
   static Color greyTransparent = Colors.grey.shade500.withOpacity(0.5);
 
   static List<Color> gradient = [Color(0xFF102A34), Color(0xFF2B5D79)];

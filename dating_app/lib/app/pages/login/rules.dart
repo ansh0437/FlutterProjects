@@ -1,11 +1,10 @@
-import 'package:dating_app/constants/pages.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/numbers.dart';
+import '../../../constants/pages.dart';
 import '../../../generated/l10n.dart';
-import '../../../helpers/app_helper.dart';
 import '../base/base_stateful.dart';
 
 class RulesPage extends BasePage {

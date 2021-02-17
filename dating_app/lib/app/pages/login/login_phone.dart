@@ -1,16 +1,14 @@
-import 'dart:convert';
-
-import 'package:dating_app/app/pages/base/base_stateful.dart';
-import 'package:dating_app/app/pages/country/country_selector_page.dart';
-import 'package:dating_app/constants/assets.dart';
-import 'package:dating_app/constants/colors.dart';
-import 'package:dating_app/constants/numbers.dart';
 import 'package:dating_app/constants/pages.dart';
-import 'package:dating_app/constants/strings.dart';
-import 'package:dating_app/data/models/country_code_dto.dart';
 import 'package:dating_app/helpers/app_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../../../constants/colors.dart';
+import '../../../constants/numbers.dart';
+import '../../../constants/strings.dart';
+import '../../../data/models/country_code_dto.dart';
+import '../base/base_stateful.dart';
+import '../country/country_selector_page.dart';
 
 class LoginPhonePage extends BasePage {
   @override
@@ -18,7 +16,8 @@ class LoginPhonePage extends BasePage {
 }
 
 class _LoginEmailPageState extends BaseState<BasePage> {
-  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _phoneController =
+      TextEditingController(text: "9876543210");
 
   CountryCodeDTO _countryCodeDTO =
       CountryCodeDTO(countryName: "India", countryCode: "IN", dialCode: "+91");
@@ -26,6 +25,12 @@ class _LoginEmailPageState extends BaseState<BasePage> {
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _phoneController.dispose();
+    super.dispose();
   }
 
   void _countryCodeSelector() async {
@@ -41,62 +46,15 @@ class _LoginEmailPageState extends BaseState<BasePage> {
         _countryCodeDTO = dto;
       });
     }
-
-    // String data =
-    //     await DefaultAssetBundle.of(context).loadString(DaterJson.countryCodes);
-    // List<dynamic> jsonResult = json.decode(data);
-
-    // List<CountryCodeDTO> list =
-    //     jsonResult.map((e) => CountryCodeDTO.fromMap(e)).toList();
-
-    // list.sort((e1, e2) => e1.countryName.compareTo(e2.countryName));
-
-    // showModalBottomSheet(
-    //     context: scaffoldKey.currentState.context,
-    //     // isScrollControlled: true,
-    //     shape: RoundedRectangleBorder(
-    //       borderRadius: BorderRadius.only(
-    //         topLeft: Radius.circular(Doubles.twentyFour),
-    //         topRight: Radius.circular(Doubles.twentyFour),
-    //       ),
-    //     ),
-    //     builder: (context) {
-    //       return SafeArea(
-    //         child: Container(
-    //           // height: getHeight(percentage: Percentage.sixty),
-    //           margin: EdgeInsets.only(top: Doubles.sixteen),
-    //           child: Column(
-    //             children: [
-    //               TextFormField(
-    //                 decoration: InputDecoration(
-    //                   labelText: "Search",
-    //                   counterText: Strings.empty,
-    //                 ),
-    //                 keyboardType: TextInputType.name,
-    //                 inputFormatters: [
-    //                   FilteringTextInputFormatter.singleLineFormatter
-    //                 ],
-    //               ),
-    //               Flexible(
-    //                 child: ListView.builder(
-    //                   physics: BouncingScrollPhysics(),
-    //                   itemCount: list.length,
-    //                   itemBuilder: (context, index) {
-    //                     return Container(
-    //                       padding: EdgeInsets.all(Doubles.sixteen),
-    //                       child: Text(list[index].countryName),
-    //                     );
-    //                   },
-    //                 ),
-    //               ),
-    //             ],
-    //           ),
-    //         ),
-    //       );
-    //     });
   }
 
-  void _continueClick() {}
+  void _continueClick() {
+    printLog('msg');
+    pushPage(Pages.otp, data: {
+      "country_code": _countryCodeDTO,
+      "phone_number": _phoneController.text.trim().toString()
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
