@@ -15,18 +15,18 @@ class BoardingDTO {
         BoardingDTO(
           title: "Discover People",
           description: "Find like minded people to connect with",
-          image: DaterImages.boardingOne,
+          image: DaterImages.boarding,
         ),
         BoardingDTO(
           title: "Match with them",
           description:
               "See who you like and who likes you and connect with them",
-          image: DaterImages.boardingTwo,
+          image: DaterImages.boarding,
         ),
         BoardingDTO(
           title: "Chat with them",
           description: "Chat with your favorite people who you connected with",
-          image: DaterImages.boardingThree,
+          image: DaterImages.boarding,
         ),
       ];
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
@@ -42,9 +43,11 @@ class DatingApp extends BasePageStateless {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: LocalizedStrings.delegate.supportedLocales,
-      initialRoute:
-          DatingPreference.boardingShowed.boolean ? Pages.login : Pages.boarding,
+      initialRoute: DatingPreference.boardingShowed.boolean
+          ? Pages.login
+          : Pages.boarding,
       routes: DatingNavigator.routes,
+      builder: EasyLoading.init(),
     );
   }
 }

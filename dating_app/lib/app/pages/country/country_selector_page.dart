@@ -21,6 +21,8 @@ class _CountrySelectorPageState extends BaseState<CountrySelectorPage> {
   List<CountryCodeDTO> mCountryList = [];
   List<CountryCodeDTO> mFilterList = [];
 
+  String _message = "Loading...";
+
   @override
   void initState() {
     super.initState();
@@ -40,6 +42,7 @@ class _CountrySelectorPageState extends BaseState<CountrySelectorPage> {
     setState(() {
       mCountryList = list;
       mFilterList = list;
+      _message = "No Data Found";
     });
   }
 
@@ -117,7 +120,7 @@ class _CountrySelectorPageState extends BaseState<CountrySelectorPage> {
                       padding: EdgeInsets.all(Doubles.twentyFour),
                       child: Center(
                         child: Text(
-                          "No result found",
+                          _message,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: AppColors.black,

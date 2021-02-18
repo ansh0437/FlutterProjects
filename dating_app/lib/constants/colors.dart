@@ -16,6 +16,7 @@ class AppColors {
   static List<Color> gradient = [Color(0xFF102A34), Color(0xFF2B5D79)];
 
   static Color red = _hexToColor("#871307");
+  static Color redLight = _hexToColor("#F44336");
   static Color blue = _hexToColor("#00BEF5");
   static Color blueDarkest = _hexToColor("#0A1923");
   static Color green = _hexToColor("#83CE6E");

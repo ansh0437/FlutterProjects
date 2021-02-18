@@ -28,7 +28,9 @@ class Doubles {
   static const double forty = 40.0;
   static const double fortyEight = 48.0;
   static const double fifty = 50.0;
+  static const double fiftyTwo = 52.0;
   static const double fiftyFour = 54.0;
+  static const double fiftySix = 56.0;
   static const double sixty = 60.0;
   static const double sixtyFour = 64.0;
   static const double seventy = 70.0;
@@ -37,8 +39,13 @@ class Doubles {
   static const double ninetySix = 96.0;
   static const double hundred = 100.0;
   static const double hundredTwenty = 120.0;
+  static const double twoHundred = 200.0;
+  static const double twoForty = 240.0;
+  static const double twoEighty = 280.0;
+  static const double threeHundred = 300.0;
   static const double threeTwenty = 320.0;
   static const double threeForty = 340.0;
+  static const double threeSixty = 360.0;
 }
 
 class Percentage {

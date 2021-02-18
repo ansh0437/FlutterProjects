@@ -49,7 +49,6 @@ class _LoginEmailPageState extends BaseState<BasePage> {
   }
 
   void _continueClick() {
-    printLog('msg');
     pushPage(Pages.otp, data: {
       "country_code": _countryCodeDTO,
       "phone_number": _phoneController.text.trim().toString()
