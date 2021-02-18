@@ -25,27 +25,27 @@ class NumberKeyboard extends BasePageStateless {
   final Function onNumberClear;
   final Function onSubmitClick;
 
-  double get boxWidth => // Doubles.twoEighty;
-      width >= Doubles.twoHundred && width <= Doubles.threeSixty
-          ? width
-          : Doubles.threeTwenty;
+  // double get boxWidth => // Doubles.twoEighty;
+  // width >= Doubles.twoHundred && width <= Doubles.threeSixty
+  //     ? width
+  //     : Doubles.threeTwenty;
 
-  double get boxHeight => // Doubles.twoEighty;
-      height >= Doubles.twoHundred && height <= Doubles.threeSixty
-          ? height
-          : Doubles.threeTwenty;
+  // double get boxHeight => // Doubles.twoEighty;
+  // height >= Doubles.twoHundred && height <= Doubles.threeSixty
+  //     ? height
+  //     : Doubles.threeTwenty;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: boxWidth,
-      height: boxHeight,
-      margin: EdgeInsets.symmetric(vertical: Doubles.twentyFour),
+      width: width,
+      height: height,
       decoration: BoxDecoration(
         border: Border.all(
           color: AppColors.red,
+          width: Doubles.two,
         ),
-        borderRadius: BorderRadius.circular(Doubles.twentyFour),
+        borderRadius: BorderRadius.circular(Doubles.sixteen),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,13 +61,13 @@ class NumberKeyboard extends BasePageStateless {
   }
 
   Widget _buildRow(List<int> numbers) {
-    double mainHeight = boxHeight * Percentage.twentyFive - Doubles.four;
+    double mainHeight = height * Percentage.twentyFive - Doubles.four;
 
-    double numWidth = boxWidth * Percentage.thirty;
+    double numWidth = width * Percentage.thirty;
     double numHeight = mainHeight * Percentage.eighty;
 
     return Container(
-      width: boxWidth,
+      width: width,
       height: mainHeight,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -84,13 +84,13 @@ class NumberKeyboard extends BasePageStateless {
   }
 
   Widget _buildCustomRow() {
-    double mainHeight = boxHeight * Percentage.twentyFive - Doubles.four;
+    double mainHeight = height * Percentage.twentyFive - Doubles.four;
 
-    double numWidth = boxWidth * Percentage.thirty;
+    double numWidth = width * Percentage.thirty;
     double numHeight = mainHeight * Percentage.eighty;
 
     return Container(
-      width: boxWidth,
+      width: width,
       height: mainHeight,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

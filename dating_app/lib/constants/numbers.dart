@@ -3,6 +3,8 @@ class Ints {
   static const int two = 2;
   static const int three = 3;
   static const int four = 4;
+  static const int five = 5;
+  static const int six = 6;
   static const int eight = 8;
   static const int ten = 10;
   static const int twelve = 12;
@@ -12,6 +14,8 @@ class Ints {
 }
 
 class Doubles {
+  static const double zero = 0.0;
+  static const double one = 1.0;
   static const double two = 2.0;
   static const double four = 4.0;
   static const double eight = 8.0;

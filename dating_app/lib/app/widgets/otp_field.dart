@@ -4,16 +4,13 @@ import 'package:dating_app/constants/numbers.dart';
 import 'package:flutter/material.dart';
 
 class OtpFields extends BasePageStateless {
-  OtpFields({
-    this.otpList,
-  });
+  OtpFields({this.otpList});
 
   final List<String> otpList;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Doubles.threeSixty,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -25,8 +22,8 @@ class OtpFields extends BasePageStateless {
 
   Widget _buildOtpBox(String value) {
     return Container(
-      width: Doubles.fiftyTwo,
-      height: Doubles.fiftyTwo,
+      width: Doubles.fortyEight,
+      height: Doubles.fortyEight,
       decoration: BoxDecoration(
         color: value.isEmpty ? AppColors.greyLight : AppColors.red,
         shape: BoxShape.circle,
