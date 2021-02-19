@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:dating_app/constants/strings.dart';
+import 'package:dating_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -21,7 +23,7 @@ class _CountrySelectorPageState extends BaseState<CountrySelectorPage> {
   List<CountryCodeDTO> mCountryList = [];
   List<CountryCodeDTO> mFilterList = [];
 
-  String _message = "Loading...";
+  String _message = Strings.empty;
 
   @override
   void initState() {
@@ -42,7 +44,7 @@ class _CountrySelectorPageState extends BaseState<CountrySelectorPage> {
     setState(() {
       mCountryList = list;
       mFilterList = list;
-      _message = "No Data Found";
+      _message = LocalizedStrings.of(context).noDataFound;
     });
   }
 
@@ -67,10 +69,11 @@ class _CountrySelectorPageState extends BaseState<CountrySelectorPage> {
 
   @override
   Widget build(BuildContext context) {
+    _message = LocalizedStrings.of(context).loading;
+
     return WillPopScope(
       onWillPop: willPop,
       child: buildScaffold(
-        darkScreen: true,
         appBar: AppBar(
           backgroundColor: AppColors.white,
           leading: InkWell(
@@ -90,7 +93,7 @@ class _CountrySelectorPageState extends BaseState<CountrySelectorPage> {
               errorBorder: InputBorder.none,
               disabledBorder: InputBorder.none,
               contentPadding: EdgeInsets.all(Doubles.sixteen),
-              hintText: "Search...",
+              hintText: LocalizedStrings.of(context).search,
               hintStyle: TextStyle(
                 fontSize: Doubles.twenty,
                 color: AppColors.black,

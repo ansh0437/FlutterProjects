@@ -27,7 +27,7 @@ class _BoardingState extends BaseState<Boarding> {
     return WillPopScope(
       onWillPop: willPop,
       child: buildScaffold(
-        darkScreen: true,
+        darkStatusBar: true,
         body: Stack(
           children: [
             CurvedContainer(width: getWidth(), height: getHeight()),

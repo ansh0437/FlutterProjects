@@ -23,8 +23,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "appName" : MessageLookupByLibrary.simpleMessage("Dating"),
     "iUnderstand" : MessageLookupByLibrary.simpleMessage("I Understand"),
+    "loading" : MessageLookupByLibrary.simpleMessage("Loading..."),
     "loginWithGoogle" : MessageLookupByLibrary.simpleMessage("Login with google"),
     "loginWithPhone" : MessageLookupByLibrary.simpleMessage("Login with phone number"),
+    "noDataFound" : MessageLookupByLibrary.simpleMessage("No data found"),
+    "otpDesc" : MessageLookupByLibrary.simpleMessage("Please enter the 4-digit code sent to you at "),
+    "otpTitle" : MessageLookupByLibrary.simpleMessage("My code is"),
+    "resend" : MessageLookupByLibrary.simpleMessage("Resend"),
     "ruleDesc" : MessageLookupByLibrary.simpleMessage("Please follow these club rules when using the app."),
     "ruleFourDesc" : MessageLookupByLibrary.simpleMessage("Report other\'s rude or bad behaviour actively so we can keep it safe"),
     "ruleFourTitle" : MessageLookupByLibrary.simpleMessage("Be active."),
@@ -34,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "ruleThreeTitle" : MessageLookupByLibrary.simpleMessage("Be safe."),
     "ruleTitle" : MessageLookupByLibrary.simpleMessage("Welcome to Dater"),
     "ruleTwoDesc" : MessageLookupByLibrary.simpleMessage("Stay chill and treat others with respect and dignity"),
-    "ruleTwoTitle" : MessageLookupByLibrary.simpleMessage("Be cool.")
+    "ruleTwoTitle" : MessageLookupByLibrary.simpleMessage("Be cool."),
+    "search" : MessageLookupByLibrary.simpleMessage("Search...")
   };
 }

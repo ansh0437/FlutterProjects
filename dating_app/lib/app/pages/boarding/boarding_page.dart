@@ -30,6 +30,7 @@ class BoardingPage extends BasePageStateless {
             ),
             Expanded(
               child: Container(
+                width: getWidth(context, percentage: Percentage.seventyFive),
                 padding: EdgeInsets.symmetric(vertical: Doubles.sixteen),
                 child: Image.asset(mBoardingDTO.image, fit: BoxFit.contain),
               ),

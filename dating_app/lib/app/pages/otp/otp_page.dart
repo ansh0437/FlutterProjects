@@ -2,7 +2,9 @@ import 'package:dating_app/app/widgets/number_keyboard.dart';
 import 'package:dating_app/app/widgets/otp_field.dart';
 import 'package:dating_app/constants/colors.dart';
 import 'package:dating_app/constants/numbers.dart';
+import 'package:dating_app/constants/strings.dart';
 import 'package:dating_app/data/models/country_code_dto.dart';
+import 'package:dating_app/generated/l10n.dart';
 import 'package:dating_app/helpers/app_helper.dart';
 import 'package:flutter/material.dart';
 
@@ -18,8 +20,8 @@ class _OtpPageState extends BaseState<OtpPage> {
   String _phoneNumber;
 
   int maxOtpLength = Ints.four;
-  String _otpString = "";
-  List<String> _otpList = List<String>.filled(Ints.four, "");
+  String _otpString = Strings.empty;
+  List<String> _otpList = List<String>.filled(Ints.four, Strings.empty);
 
   @override
   void initState() {
@@ -27,7 +29,7 @@ class _OtpPageState extends BaseState<OtpPage> {
   }
 
   void _resendClick() {
-    _updateOtp("");
+    _updateOtp(Strings.empty);
   }
 
   void _onNumberClick(String number) {
@@ -45,16 +47,16 @@ class _OtpPageState extends BaseState<OtpPage> {
   void _updateOtp(String otp) {
     setState(() {
       _otpString = otp;
-      _otpList = _otpString.split("");
+      _otpList = _otpString.split(Strings.empty);
       int diff = maxOtpLength - _otpList.length;
       for (var i = 0; i < diff; i++) {
-        _otpList.add("");
+        _otpList.add(Strings.empty);
       }
     });
   }
 
   void _onSubmitClick() {
-    String otp = _otpList.join("").trim();
+    String otp = _otpList.join(Strings.empty).trim();
     if (otp.length < 4) {
       showToast("Enter valid otp", darkTheme: true);
     } else {
@@ -87,7 +89,7 @@ class _OtpPageState extends BaseState<OtpPage> {
             ),
           ),
           title: Text(
-            "My code is",
+            LocalizedStrings.of(context).otpTitle,
             style: TextStyle(
               fontSize: Doubles.thirtyTwo,
               fontWeight: FontWeight.bold,
@@ -122,8 +124,7 @@ class _OtpPageState extends BaseState<OtpPage> {
                               ),
                               children: [
                                 TextSpan(
-                                  text:
-                                      "Please enter the 4-digit code sent to you at ",
+                                  text: LocalizedStrings.of(context).otpDesc,
                                 ),
                                 TextSpan(
                                   text:
@@ -142,7 +143,7 @@ class _OtpPageState extends BaseState<OtpPage> {
                           height: Doubles.thirtyTwo,
                           child: RaisedButton(
                             child: Text(
-                              "Resend",
+                              LocalizedStrings.of(context).resend,
                               style: TextStyle(
                                 color: AppColors.red,
                                 fontSize: Doubles.sixteen,
@@ -168,8 +169,7 @@ class _OtpPageState extends BaseState<OtpPage> {
                       child: LayoutBuilder(
                         builder: (context, constraints) {
                           return NumberKeyboard(
-                            width:
-                                constraints.maxWidth * Percentage.eighty,
+                            width: constraints.maxWidth * Percentage.eighty,
                             height: constraints.maxHeight * Percentage.ninety,
                             onNumberClick: _onNumberClick,
                             onNumberClear: _onNumberClear,

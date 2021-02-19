@@ -1,9 +1,22 @@
+import 'package:dating_app/constants/numbers.dart';
 import 'package:flutter/material.dart';
 
 abstract class BasePageStateless extends StatelessWidget {
   BasePageStateless({Key key}) : super(key: key);
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  double getWidth(
+    BuildContext context, {
+    double percentage = Percentage.hundred,
+  }) =>
+      MediaQuery.of(context).size.width * percentage;
+
+  double getHeight(
+    BuildContext context, {
+    double percentage = Percentage.hundred,
+  }) =>
+      MediaQuery.of(context).size.height * percentage;
 
   void closePage(BuildContext context) {
     Navigator.of(context).pop();

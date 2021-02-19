@@ -19,24 +19,24 @@ abstract class BaseState<T extends BasePage> extends State<T> {
   double getHeight({double percentage = Percentage.hundred}) =>
       MediaQuery.of(context).size.height * percentage;
 
-  SystemUiOverlayStyle _statusBarStyle(bool darkScreen) {
+  SystemUiOverlayStyle _statusBarStyle(bool darkStatusBar) {
     if (Platform.isAndroid) {
       return SystemUiOverlayStyle(
-        statusBarColor: darkScreen ? AppColors.transparent : AppColors.white,
-        statusBarBrightness: darkScreen ? Brightness.light : Brightness.dark,
+        statusBarColor: darkStatusBar ? AppColors.red : AppColors.white,
+        statusBarBrightness: darkStatusBar ? Brightness.light : Brightness.dark,
         statusBarIconBrightness:
-            darkScreen ? Brightness.light : Brightness.dark,
+            darkStatusBar ? Brightness.light : Brightness.dark,
       );
     } else {
-      return darkScreen
+      return darkStatusBar
           ? SystemUiOverlayStyle.light
           : SystemUiOverlayStyle.dark;
     }
   }
 
-  Widget buildScaffold({bool darkScreen = false, AppBar appBar, Widget body}) {
+  Widget buildScaffold({bool darkStatusBar = false, AppBar appBar, Widget body}) {
     return AnnotatedRegion(
-      value: _statusBarStyle(darkScreen),
+      value: _statusBarStyle(darkStatusBar),
       child: Scaffold(
         key: scaffoldKey,
         appBar: appBar,

@@ -1,6 +1,7 @@
 import 'package:dating_app/app/pages/base/base_stateless.dart';
 import 'package:dating_app/constants/colors.dart';
 import 'package:dating_app/constants/numbers.dart';
+import 'package:dating_app/constants/strings.dart';
 import 'package:flutter/material.dart';
 
 class NumberKeyboard extends BasePageStateless {
@@ -51,16 +52,16 @@ class NumberKeyboard extends BasePageStateless {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildRow([1, 2, 3]),
-          _buildRow([4, 5, 6]),
-          _buildRow([7, 8, 9]),
+          _buildRow([Strings.one, Strings.two, Strings.three]),
+          _buildRow([Strings.four, Strings.five, Strings.six]),
+          _buildRow([Strings.seven, Strings.eight, Strings.nine]),
           _buildCustomRow(),
         ],
       ),
     );
   }
 
-  Widget _buildRow(List<int> numbers) {
+  Widget _buildRow(List<String> numbers) {
     double mainHeight = height * Percentage.twentyFive - Doubles.four;
 
     double numWidth = width * Percentage.thirty;
@@ -72,11 +73,11 @@ class NumberKeyboard extends BasePageStateless {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          for (var i in numbers)
+          for (var num in numbers)
             _buildNumber(
               numWidth: numWidth,
               numHeight: numHeight,
-              number: i.toString(),
+              number: num,
             ),
         ],
       ),
@@ -102,7 +103,7 @@ class NumberKeyboard extends BasePageStateless {
           _buildNumber(
             numWidth: numWidth,
             numHeight: numHeight,
-            number: "0",
+            number: Strings.zero,
           ),
           _buildSubmitButton(
             numWidth: numWidth,
