@@ -19,7 +19,7 @@ class _OtpPageState extends BaseState<OtpPage> {
   CountryCodeDTO _countryCodeDTO;
   String _phoneNumber;
 
-  int maxOtpLength = Ints.four;
+  int _maxOtpLength = Ints.four;
   String _otpString = Strings.empty;
   List<String> _otpList = List<String>.filled(Ints.four, Strings.empty);
 
@@ -33,14 +33,14 @@ class _OtpPageState extends BaseState<OtpPage> {
   }
 
   void _onNumberClick(String number) {
-    if (_otpString.length < maxOtpLength) {
+    if (_otpString.length < _maxOtpLength) {
       _updateOtp(_otpString + number);
     }
   }
 
   void _onNumberClear() {
-    if (_otpString.length > 0) {
-      _updateOtp(_otpString.substring(0, _otpString.length - 1));
+    if (_otpString.length > Ints.zero) {
+      _updateOtp(_otpString.substring(Ints.zero, _otpString.length - Ints.one));
     }
   }
 
@@ -48,8 +48,8 @@ class _OtpPageState extends BaseState<OtpPage> {
     setState(() {
       _otpString = otp;
       _otpList = _otpString.split(Strings.empty);
-      int diff = maxOtpLength - _otpList.length;
-      for (var i = 0; i < diff; i++) {
+      int diff = _maxOtpLength - _otpList.length;
+      for (var i = Ints.zero; i < diff; i++) {
         _otpList.add(Strings.empty);
       }
     });
@@ -57,7 +57,7 @@ class _OtpPageState extends BaseState<OtpPage> {
 
   void _onSubmitClick() {
     String otp = _otpList.join(Strings.empty).trim();
-    if (otp.length < 4) {
+    if (otp.length < _maxOtpLength) {
       showToast("Enter valid otp", darkTheme: true);
     } else {
       showToast("Otp: $otp", darkTheme: true);

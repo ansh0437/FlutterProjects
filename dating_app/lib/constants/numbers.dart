@@ -1,4 +1,5 @@
 class Ints {
+  static const int zero = 0;
   static const int one = 1;
   static const int two = 2;
   static const int three = 3;

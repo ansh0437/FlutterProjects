@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:dating_app/constants/strings.dart';
 import 'package:dating_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,8 +22,6 @@ class _CountrySelectorPageState extends BaseState<CountrySelectorPage> {
   List<CountryCodeDTO> mCountryList = [];
   List<CountryCodeDTO> mFilterList = [];
 
-  String _message = Strings.empty;
-
   @override
   void initState() {
     super.initState();
@@ -44,7 +41,6 @@ class _CountrySelectorPageState extends BaseState<CountrySelectorPage> {
     setState(() {
       mCountryList = list;
       mFilterList = list;
-      _message = LocalizedStrings.of(context).noDataFound;
     });
   }
 
@@ -69,8 +65,6 @@ class _CountrySelectorPageState extends BaseState<CountrySelectorPage> {
 
   @override
   Widget build(BuildContext context) {
-    _message = LocalizedStrings.of(context).loading;
-
     return WillPopScope(
       onWillPop: willPop,
       child: buildScaffold(
@@ -123,7 +117,9 @@ class _CountrySelectorPageState extends BaseState<CountrySelectorPage> {
                       padding: EdgeInsets.all(Doubles.twentyFour),
                       child: Center(
                         child: Text(
-                          _message,
+                          mCountryList.isEmpty
+                              ? LocalizedStrings.of(context).loading
+                              : LocalizedStrings.of(context).noDataFound,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: AppColors.black,
