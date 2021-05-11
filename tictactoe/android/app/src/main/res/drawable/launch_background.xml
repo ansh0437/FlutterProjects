@@ -1,0 +1,19 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape>
+            <solid android:color="#FFFFFF" />
+        </shape>
+    </item>
+
+    <item
+        android:bottom="192dp"
+        android:left="192dp"
+        android:right="192dp"
+        android:top="192dp">
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/logo" />
+    </item>
+
+</layer-list>
