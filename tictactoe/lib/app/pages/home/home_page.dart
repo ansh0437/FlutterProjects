@@ -79,7 +79,7 @@ class _HomePageState extends BaseState<HomePage> {
             ),
             SizedBox(height: Doubles.twentyFour),
             Text(
-              "Choose your play mode",
+              "Choose your opponent",
               style: TextStyle(
                 color: AppColors.black,
                 fontSize: Doubles.twentyFour,
@@ -98,7 +98,7 @@ class _HomePageState extends BaseState<HomePage> {
                 height: Doubles.fortyEight,
                 child: Center(
                   child: Text(
-                    "With AI",
+                    "AI",
                     style: TextStyle(
                       color: AppColors.white,
                       fontSize: Doubles.eighteen,
@@ -120,7 +120,7 @@ class _HomePageState extends BaseState<HomePage> {
                 height: Doubles.fortyEight,
                 child: Center(
                   child: Text(
-                    "With Friend",
+                    "Friend",
                     style: TextStyle(
                       color: AppColors.white,
                       fontSize: Doubles.eighteen,

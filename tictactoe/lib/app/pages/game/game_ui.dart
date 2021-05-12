@@ -1,43 +1,91 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tictactoe/app/pages/base/base_stateful.dart';
 import 'package:tictactoe/app/pages/base/base_stateless.dart';
+import 'package:tictactoe/app/pages/game/game.dart';
 import 'package:tictactoe/constants/assets.dart';
 import 'package:tictactoe/constants/colors.dart';
 import 'package:tictactoe/constants/numbers.dart';
 import 'package:tictactoe/helpers/app_helper.dart';
 
-class GameBox extends BasePageStateless {
+class GameBox extends BasePage {
+  final borderSide = BorderSide(color: AppColors.black, width: Doubles.two);
+
   final double width;
   final double height;
 
-  GameBox({this.width, this.height});
+  final Game game;
+
+  GameBox({this.width, this.height, this.game});
+
+  @override
+  _GameBoxState createState() => _GameBoxState();
+}
+
+class _GameBoxState extends BaseState<GameBox> {
+  double boxWidth = Doubles.zero;
+  double boxHeight = Doubles.zero;
+
+  @override
+  void initState() {
+    super.initState();
+    boxWidth =
+        widget.width >= Doubles.threeSixty ? Doubles.threeSixty : widget.width;
+    boxHeight = widget.height >= Doubles.threeSixty
+        ? Doubles.threeSixty
+        : widget.height;
+  }
+
+  BorderSide _topBorder(int index) {
+    return (index == 3 ||
+            index == 4 ||
+            index == 5 ||
+            index == 6 ||
+            index == 7 ||
+            index == 8)
+        ? widget.borderSide
+        : BorderSide.none;
+  }
+
+  BorderSide _rightBorder(int index) {
+    return (index == 0 ||
+            index == 1 ||
+            index == 3 ||
+            index == 4 ||
+            index == 6 ||
+            index == 7)
+        ? widget.borderSide
+        : BorderSide.none;
+  }
+
+  void _onCellClick(int index) {
+    bool isMoved = widget.game.playMove(index);
+
+    if (isMoved) {
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    double boxWidth =
-        (width >= Doubles.threeSixty ? Doubles.threeSixty : width) -
-            Doubles.twentyFour;
-    double boxHeight =
-        (height >= Doubles.threeSixty ? Doubles.threeSixty : height) -
-            Doubles.twentyFour;
-
-    double cellWidth = boxWidth / Ints.three;
-    double cellHeight = boxHeight / Ints.three;
-
-    printLog("width: $width, height: $height");
-    printLog("boxWidth: $boxWidth, boxHeight: $boxHeight");
-    printLog("cellWidth: $cellWidth, cellHeight: $cellHeight");
-
     return Container(
       width: boxWidth,
       height: boxHeight,
-      margin: EdgeInsets.all(Doubles.sixteen),
+      padding: EdgeInsets.all(Doubles.eight),
       decoration: BoxDecoration(
+        color: AppColors.white,
         border: Border.all(
-          color: AppColors.purpleDark,
-          width: Doubles.one,
+          color: AppColors.black,
+          width: Doubles.two,
         ),
-        borderRadius: BorderRadius.circular(Doubles.zero),
+        borderRadius: BorderRadius.circular(Doubles.thirtySix),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.greyLight,
+            offset: Offset(0.0, 1.0),
+            blurRadius: Doubles.twentyFour,
+          )
+        ],
       ),
       child: GridView.builder(
         itemCount: Ints.nine,
@@ -45,40 +93,23 @@ class GameBox extends BasePageStateless {
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: Ints.three,
         ),
-        itemBuilder: (BuildContext context, int index) =>
-            _BoxCell(showCross: index % 2 == 0),
-      ),
-    );
-  }
-}
-
-class _BoxCell extends BasePageStateless {
-  // final double width;
-  // final double height;
-
-  final bool showCross;
-
-  final SvgPicture _crossIcon = SvgPicture.asset(AppIcon.cross,
-      width: Doubles.thirtySix, height: Doubles.thirtySix);
-
-  final SvgPicture _circleIcon = SvgPicture.asset(AppIcon.circle,
-      width: Doubles.forty, height: Doubles.forty);
-
-  // _BoxCell({this.width, this.height});
-  _BoxCell({this.showCross});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        // width: width,
-        // height: height,
-        decoration: BoxDecoration(
-          // color: AppColors.purpleLightest,
-          border: Border.all(color: AppColors.purpleDark),
-        ),
-        child: Center(child: showCross ? _crossIcon : _circleIcon),
+        itemBuilder: (_, index) {
+          return InkWell(
+            onTap: () => _onCellClick(index),
+            // customBorder: CircleBorder(),
+            // splashColor: AppColors.redLight,
+            child: Container(
+              padding: EdgeInsets.all(Doubles.twentyFour),
+              decoration: BoxDecoration(
+                border: Border(
+                  top: _topBorder(index),
+                  right: _rightBorder(index),
+                ),
+              ),
+              child: widget.game.cellIcon(index),
+            ),
+          );
+        },
       ),
     );
   }

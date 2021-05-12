@@ -21,6 +21,7 @@ class Doubles {
   static const double one = 1.0;
   static const double two = 2.0;
   static const double four = 4.0;
+  static const double six = 6.0;
   static const double eight = 8.0;
   static const double ten = 10.0;
   static const double twelve = 12.0;
@@ -28,6 +29,7 @@ class Doubles {
   static const double eighteen = 18.0;
   static const double twenty = 20.0;
   static const double twentyFour = 24.0;
+  static const double twentySix = 26.0;
   static const double twentyEight = 28.0;
   static const double thirty = 30.0;
   static const double thirtyTwo = 32.0;

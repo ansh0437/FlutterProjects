@@ -1,4 +1,5 @@
 enum Player {
+  NONE,
   AI,
   HUMAN,
   ONE,
@@ -9,4 +10,10 @@ enum ScoreType {
   Win,
   Lose,
   Draw,
+}
+
+enum BoardState {
+  EMPTY, 
+  PLAYER_ONE,
+  PLAYER_TWO,
 }
