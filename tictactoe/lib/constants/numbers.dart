@@ -13,6 +13,9 @@ class Ints {
   static const int sixteen = 16;
   static const int twenty = 20;
   static const int twentyFour = 24;
+  static const int twentyFive = 25;
+  static const int thirty = 30;
+  static const int sixtyNine = 69;
 }
 
 class Doubles {
@@ -59,6 +62,8 @@ class Doubles {
   static const double fourHundred = 400.0;
   static const double fourEighty = 480.0;
   static const double fiveHundred = 500.0;
+  static const double fiveTwenty = 520.0;
+  static const double fiveForty = 540.0;
   static const double sixHundred = 600.0;
 }
 
@@ -68,10 +73,12 @@ class Percentage {
   static const double twentyFive = 0.25;
   static const double thirty = 0.3;
   static const double forty = 0.4;
+  static const double fortyFive = 0.45;
   static const double fifty = 0.5;
   static const double sixty = 0.6;
   static const double seventyFive = 0.75;
   static const double eighty = 0.8;
+  static const double eightyFive = 0.85;
   static const double ninety = 0.9;
   static const double hundred = 1;
 }

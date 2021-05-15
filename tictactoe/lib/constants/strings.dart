@@ -1,7 +1,7 @@
 class Strings {
   static final String appName = "Tic Tac Toe";
 
-  static final String empty = "";
+  static const String empty = "";
 
   static final String zero = "0";
   static final String one = "1";

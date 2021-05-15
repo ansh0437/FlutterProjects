@@ -3,17 +3,17 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tictactoe/constants/assets.dart';
 import 'package:tictactoe/constants/enums.dart';
 import 'package:tictactoe/constants/numbers.dart';
-import 'package:tictactoe/helpers/app_helper.dart';
-import 'package:tictactoe/notifiers/game_notifier.dart';
 
-class Game {
-  static Game get instance => new Game._();
+class AI {
+  static AI get instance => new AI._();
 
-  final SvgPicture playerOneIcon = SvgPicture.asset(AppIcon.cross,
+  final SvgPicture _crossIcon = SvgPicture.asset(AppIcon.cross,
       width: Doubles.twentySix, height: Doubles.twentySix);
 
-  final SvgPicture playerTwoIcon = SvgPicture.asset(AppIcon.circle,
+  final SvgPicture _circleIcon = SvgPicture.asset(AppIcon.circle,
       width: Doubles.thirty, height: Doubles.thirty);
+
+  final _scores = {Player.ONE: -1, Player.TWO: 1, Player.NONE: 0};
 
   final List<List<int>> _winningConditions = [
     [0, 1, 2],
@@ -26,23 +26,29 @@ class Game {
     [2, 4, 6],
   ];
 
+  GameType _gameType = GameType.HUMAN;
+
   String playerOneName = "Player One";
   String playerTwoName = "Player Two";
+
+  SvgPicture playerOneIcon;
+  SvgPicture playerTwoIcon;
 
   int playerOneWins = Ints.zero;
   int playerTwoWins = Ints.zero;
 
-  List<Player> _board = List.generate(9, (idx) => Player.NONE);
-
-  // List<List<Player>> _boardMatrix = [[]];
+  List<Player> _board = List.generate(Ints.nine, (idx) => Player.NONE);
 
   Player _whoseTurn = Player.ONE;
 
-  int _playedCount = Ints.zero;
+  int _spotsPlayed = Ints.zero;
 
   // GameNotifier gameNotifier;
 
-  Game._();
+  AI._() {
+    playerOneIcon = _crossIcon;
+    playerTwoIcon = _circleIcon;
+  }
 
   Player get currentPlayer => _whoseTurn;
 
@@ -59,11 +65,25 @@ class Game {
             : Container();
   }
 
-  void onRefreshBoard() {
+  void setData(Map<String, dynamic> data) {
+    _gameType = data["game_type"];
+    playerOneName = data["player_one"];
+    playerTwoName = data["player_two"];
+    bool b = data["player_one_side"];
+    if (b) {
+      playerOneIcon = _crossIcon;
+      playerTwoIcon = _circleIcon;
+    } else {
+      playerOneIcon = _circleIcon;
+      playerTwoIcon = _crossIcon;
+    }
+  }
+
+  void refreshBoard() {
     _board.clear();
-    _board = List.generate(9, (idx) => Player.NONE);
+    _board = List.generate(Ints.nine, (idx) => Player.NONE);
     _whoseTurn = Player.ONE;
-    _playedCount = Ints.zero;
+    _spotsPlayed = Ints.zero;
   }
 
   bool notOccupied(int index) {
@@ -73,11 +93,11 @@ class Game {
   bool playMove(int index) {
     _board[index] = _whoseTurn;
 
-    if (_playedCount != 8) {
+    if (_spotsPlayed != Ints.eight) {
       _changeTurn();
     }
 
-    _playedCount += Ints.one;
+    _spotsPlayed += Ints.one;
 
     return true;
   }
@@ -86,26 +106,26 @@ class Game {
     String message = "";
     Player winner = Player.NONE;
 
-    if (_playedCount < Ints.four) {
+    if (_spotsPlayed < Ints.four) {
       return message;
     }
 
     for (List<int> list in _winningConditions) {
-      if (_board[list[0]] != Player.NONE &&
-          _board[list[0]] == _board[list[1]] &&
-          _board[list[0]] == _board[list[2]]) {
-        winner = _board[list[0]];
+      if (_board[list[Ints.zero]] != Player.NONE &&
+          _board[list[Ints.zero]] == _board[list[Ints.one]] &&
+          _board[list[Ints.zero]] == _board[list[Ints.two]]) {
+        winner = _board[list[Ints.zero]];
         break;
       }
     }
 
     if (winner == Player.ONE) {
-      playerOneWins += 1;
+      playerOneWins += Ints.one;
       message = "Game won by '$playerOneName'";
     } else if (winner == Player.TWO) {
-      playerTwoWins += 1;
+      playerTwoWins += Ints.one;
       message = "Game won by '$playerTwoName'";
-    } else if (winner == Player.NONE && _playedCount == 9) {
+    } else if (winner == Player.NONE && _spotsPlayed == Ints.nine) {
       message = "Game is a draw.";
     }
 

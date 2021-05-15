@@ -27,7 +27,7 @@ class _SplashPageState extends BaseState<SplashPage> {
     double screenHeight = getHeight();
 
     return buildScaffold(
-      darkStatusBar: true,
+      // darkStatusBar: true,
       body: SafeArea(
         child: Container(
           width: screenWidth,

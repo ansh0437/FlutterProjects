@@ -34,20 +34,44 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.tictactoe"
+        applicationId "com.ansh.tictactoe"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
 
-    buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+    signingConfigs {
+        tictactoe {
+            Properties properties = new Properties()
+            properties.load(project.rootProject.file('app/keystore/tictactoe.properties').newDataInputStream())
+            storeFile file(properties.getProperty('storeFile'))
+            keyAlias properties.getProperty('keyAlias')
+            storePassword properties.getProperty('storePassword')
+            keyPassword properties.getProperty('keyPassword')
         }
     }
+
+    buildTypes {
+        debug {
+            zipAlignEnabled false
+            minifyEnabled false
+            shrinkResources false
+            debuggable true
+            signingConfig signingConfigs.tictactoe
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            zipAlignEnabled true
+            minifyEnabled true
+            shrinkResources true
+            debuggable false
+            signingConfig signingConfigs.tictactoe
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
 }
 
 flutter {

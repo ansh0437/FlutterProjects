@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tictactoe/app/pages/base/base_stateful.dart';
-import 'package:tictactoe/app/pages/base/base_stateless.dart';
-import 'package:tictactoe/app/pages/game/game.dart';
-import 'package:tictactoe/constants/assets.dart';
+import 'package:tictactoe/app/ai/ai.dart';
 import 'package:tictactoe/constants/colors.dart';
 import 'package:tictactoe/constants/numbers.dart';
-import 'package:tictactoe/helpers/app_helper.dart';
 
 class GameBox extends BasePage {
   final borderSide = BorderSide(color: AppColors.black, width: Doubles.two);
@@ -14,7 +10,7 @@ class GameBox extends BasePage {
   final double width;
   final double height;
 
-  final Game game;
+  final AI game;
 
   GameBox({this.width, this.height, this.game});
 

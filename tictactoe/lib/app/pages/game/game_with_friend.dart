@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
+import 'package:tictactoe/app/ai/ai.dart';
 import 'package:tictactoe/app/pages/base/base_stateful.dart';
-import 'package:tictactoe/app/pages/game/game.dart';
-import 'package:tictactoe/app/pages/game/game_ui.dart';
-import 'package:tictactoe/constants/assets.dart';
 import 'package:tictactoe/constants/colors.dart';
 import 'package:tictactoe/constants/enums.dart';
 import 'package:tictactoe/constants/numbers.dart';
-import 'package:tictactoe/data/models/score_model.dart';
-import 'package:tictactoe/helpers/app_helper.dart';
-import 'package:tictactoe/notifiers/game_notifier.dart';
+import 'package:tictactoe/constants/strings.dart';
+import 'package:tictactoe/helpers/dialog_helper.dart';
+
+import '../../../constants/numbers.dart';
 
 class GameWithFriend extends BasePage {
   final borderSide = BorderSide(color: AppColors.black, width: Doubles.two);
@@ -20,7 +17,7 @@ class GameWithFriend extends BasePage {
 }
 
 class _GameWithFriendState extends BaseState<GameWithFriend> {
-  Game _game = Game.instance;
+  AI _ai = AI.instance;
 
   @override
   void initState() {
@@ -28,156 +25,178 @@ class _GameWithFriendState extends BaseState<GameWithFriend> {
   }
 
   void _onCellClick(int index) {
-    if (_game.notOccupied(index)) {
-      if (_game.playMove(index)) {
-        String message = _game.checkWinner();
+    if (_ai.notOccupied(index)) {
+      if (_ai.playMove(index)) {
+        String message = _ai.checkWinner();
         if (message.isNotEmpty) {
           _showWinnerDialog(message);
         }
         setState(() {});
       }
-    } else {
-      showToast("Occupied");
     }
   }
 
   void _showWinnerDialog(String message) {
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) {
-          return Dialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(Doubles.sixteen),
-              ),
-              child: Container(
-                padding: EdgeInsets.all(Doubles.twelve),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Container(
-                      child: Text(
-                        "Info",
-                        style: TextStyle(
-                          fontSize: Doubles.twentyFour,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: Doubles.eight),
-                      child: Text(
-                        message,
-                        style: TextStyle(
-                          fontSize: Doubles.eighteen,
-                          color: AppColors.black,
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          _onRefreshGame();
-                          Navigator.pop(context);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: AppColors.purple,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(Doubles.eight),
-                          ),
-                        ),
-                        child: Container(
-                          width: Doubles.eighty,
-                          child: Center(
-                            child: Text(
-                              "Okay",
-                              style: TextStyle(
-                                color: AppColors.white,
-                                fontSize: Doubles.sixteen,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ));
-        });
+    DialogHelper.instance.showWinner(
+      context: context,
+      message: message,
+      okClick: _onRefreshGame,
+    );
+    // showDialog(
+    //     context: context,
+    //     barrierDismissible: false,
+    //     builder: (context) {
+    //       return Dialog(
+    //           shape: RoundedRectangleBorder(
+    //             borderRadius: BorderRadius.circular(Doubles.sixteen),
+    //           ),
+    //           child: Container(
+    //             padding: EdgeInsets.all(Doubles.twelve),
+    //             child: Column(
+    //               crossAxisAlignment: CrossAxisAlignment.start,
+    //               mainAxisSize: MainAxisSize.min,
+    //               children: <Widget>[
+    //                 Container(
+    //                   child: Text(
+    //                     "Info",
+    //                     style: TextStyle(
+    //                       fontSize: Doubles.twentyFour,
+    //                       fontWeight: FontWeight.bold,
+    //                     ),
+    //                   ),
+    //                 ),
+    //                 Container(
+    //                   padding: EdgeInsets.symmetric(vertical: Doubles.eight),
+    //                   child: Text(
+    //                     message,
+    //                     style: TextStyle(
+    //                       fontSize: Doubles.eighteen,
+    //                       color: AppColors.black,
+    //                     ),
+    //                   ),
+    //                 ),
+    //                 Align(
+    //                   alignment: Alignment.bottomRight,
+    //                   child: ElevatedButton(
+    //                     onPressed: () {
+    //                       _onRefreshGame();
+    //                       Navigator.pop(context);
+    //                     },
+    //                     style: ElevatedButton.styleFrom(
+    //                       primary: AppColors.purple,
+    //                       shape: RoundedRectangleBorder(
+    //                         borderRadius: BorderRadius.circular(Doubles.eight),
+    //                       ),
+    //                     ),
+    //                     child: Container(
+    //                       width: Doubles.eighty,
+    //                       child: Center(
+    //                         child: Text(
+    //                           "Okay",
+    //                           style: TextStyle(
+    //                             color: AppColors.white,
+    //                             fontSize: Doubles.sixteen,
+    //                           ),
+    //                         ),
+    //                       ),
+    //                     ),
+    //                   ),
+    //                 ),
+    //               ],
+    //             ),
+    //           ));
+    //     });
   }
 
   void _onRefreshGame() {
-    _game.onRefreshBoard();
+    _ai.refreshBoard();
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
+    dynamic data = ModalRoute.of(context).settings.arguments;
+
+    if (data is Map<String, dynamic>) {
+      _ai.setData(data);
+    }
+
+    double screenWidth = getWidth();
+
+    screenWidth =
+        screenWidth <= Doubles.fiveTwenty ? screenWidth : Doubles.fourEighty;
+
     return buildScaffold(
+      title: Strings.appName,
       body: SafeArea(
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: Doubles.sixteen),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: Doubles.sixteen),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    _playerBox(playerType: Player.ONE),
-                    _scoreBox(),
-                    _playerBox(playerType: Player.TWO),
-                  ],
-                ),
-              ),
-              Container(
-                child: Center(
-                  child: LayoutBuilder(
-                    builder: (context, constraints) =>
-                        _gameBox(constraints.maxWidth, constraints.maxHeight),
+        child: Center(
+          child: Container(
+            width: screenWidth,
+            padding: EdgeInsets.symmetric(vertical: Doubles.sixteen),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: Doubles.sixteen),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _playerBox(
+                          width: screenWidth * Percentage.twentyFive,
+                          playerType: Player.ONE),
+                      _scoreBox(width: screenWidth * Percentage.twentyFive),
+                      _playerBox(
+                          width: screenWidth * Percentage.twentyFive,
+                          playerType: Player.TWO),
+                    ],
                   ),
                 ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: AppColors.greyLightest,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.grey,
-                      offset: Offset(0.0, 1.0),
-                      blurRadius: Doubles.eight,
-                    )
-                  ],
+                Container(
+                  child: Center(
+                    child: LayoutBuilder(
+                      builder: (context, constraints) =>
+                          _gameBox(constraints.maxWidth, constraints.maxHeight),
+                    ),
+                  ),
                 ),
-                child: IconButton(
-                  icon: Icon(Icons.refresh_sharp),
-                  iconSize: Doubles.forty,
-                  color: AppColors.black,
-                  onPressed: _onRefreshGame,
-                ),
-              )
-            ],
+                Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.greyLightest,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.grey,
+                        offset: Offset(0.0, 1.0),
+                        blurRadius: Doubles.eight,
+                      )
+                    ],
+                  ),
+                  child: IconButton(
+                    icon: Icon(Icons.refresh_sharp),
+                    iconSize: Doubles.forty,
+                    color: AppColors.black,
+                    onPressed: _onRefreshGame,
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget _playerBox({@required Player playerType}) {
+  Widget _playerBox({@required double width, @required Player playerType}) {
     return Container(
-      width: getWidth(percentage: Percentage.twentyFive),
+      width: width,
       height: Doubles.eighty,
       padding: EdgeInsets.all(Doubles.four),
       decoration: BoxDecoration(
-        color: playerType == _game.currentPlayer
+        color: playerType == _ai.currentPlayer
             ? AppColors.purpleLightest
             : AppColors.greyLightest,
-        borderRadius: BorderRadius.circular(Doubles.sixteen),
+        borderRadius: BorderRadius.circular(Doubles.twelve),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -185,35 +204,30 @@ class _GameWithFriendState extends BaseState<GameWithFriend> {
         children: [
           Container(
             child: playerType == Player.ONE
-                ? _game.playerOneIcon
-                : _game.playerTwoIcon,
+                ? _ai.playerOneIcon
+                : _ai.playerTwoIcon,
           ),
           Text(
-            playerType == Player.ONE
-                ? _game.playerOneName
-                : _game.playerTwoName,
+            playerType == Player.ONE ? _ai.playerOneName : _ai.playerTwoName,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: Doubles.sixteen,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ],
       ),
     );
   }
 
-  Widget _scoreBox() {
+  Widget _scoreBox({@required double width}) {
     return Container(
-      width: getWidth(percentage: Percentage.twentyFive),
+      width: width,
       height: Doubles.forty,
       padding: EdgeInsets.symmetric(horizontal: Doubles.sixteen),
       decoration: BoxDecoration(
-        color: AppColors.accent,
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(Doubles.twelve),
         boxShadow: [
           BoxShadow(
-            color: AppColors.grey,
+            color: AppColors.greyLight,
             offset: Offset(0.0, 1.0),
             blurRadius: Doubles.four,
           )
@@ -222,9 +236,9 @@ class _GameWithFriendState extends BaseState<GameWithFriend> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _scoreLabel(_game.playerOneWins.toString()),
+          _scoreLabel(_ai.playerOneWins.toString()),
           _scoreLabel("-"),
-          _scoreLabel(_game.playerTwoWins.toString()),
+          _scoreLabel(_ai.playerTwoWins.toString()),
         ],
       ),
     );
@@ -245,9 +259,9 @@ class _GameWithFriendState extends BaseState<GameWithFriend> {
   }
 
   Widget _gameBox(double width, double height) {
-    double boxWidth = width >= Doubles.threeSixty ? Doubles.threeSixty : width;
+    double boxWidth = width >= Doubles.threeSixty ? Doubles.threeTwenty : width;
     double boxHeight =
-        height >= Doubles.threeSixty ? Doubles.threeSixty : height;
+        height >= Doubles.threeSixty ? Doubles.threeTwenty : height;
 
     return Container(
       width: boxWidth,
@@ -287,7 +301,7 @@ class _GameWithFriendState extends BaseState<GameWithFriend> {
                   right: _rightBorder(index),
                 ),
               ),
-              child: _game.cellIcon(index),
+              child: _ai.cellIcon(index),
             ),
           );
         },
