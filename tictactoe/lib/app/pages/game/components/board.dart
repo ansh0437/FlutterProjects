@@ -23,8 +23,10 @@ class Board extends BasePageStateless {
             if (winner != null) {
               if (winner == Player.ONE) {
                 message = "Game won by '${game.playerOneName}'";
+                game.playerOneWins++;
               } else if (winner == Player.TWO) {
                 message = "Game won by '${game.playerTwoName}'";
+                game.playerTwoWins++;
               } else if (winner == Player.DRAW) {
                 message = "Game is a draw.";
               }

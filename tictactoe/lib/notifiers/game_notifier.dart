@@ -6,7 +6,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tictactoe/constants/assets.dart';
 import 'package:tictactoe/constants/enums.dart';
 import 'package:tictactoe/constants/numbers.dart';
-import 'package:tictactoe/helpers/app_helper.dart';
 
 class GameNotifier with ChangeNotifier {
   final SvgPicture _crossIcon = SvgPicture.asset(AppIcon.cross,
@@ -46,7 +45,7 @@ class GameNotifier with ChangeNotifier {
   int _spotsPlayed = Ints.zero;
 
   GameNotifier(Map<String, dynamic> data) {
-    printLog("Game Notifier");
+    if (data == null) return;
 
     _gameType = data["game_type"];
     playerOneName = data["player_one"];
