@@ -41,16 +41,16 @@ android {
         versionName flutterVersionName
     }
 
-    // signingConfigs {
-    //     tictactoe {
-    //         Properties properties = new Properties()
-    //         properties.load(project.rootProject.file('app/keystore/tictactoe.properties').newDataInputStream())
-    //         storeFile file(properties.getProperty('storeFile'))
-    //         keyAlias properties.getProperty('keyAlias')
-    //         storePassword properties.getProperty('storePassword')
-    //         keyPassword properties.getProperty('keyPassword')
-    //     }
-    // }
+     signingConfigs {
+         tictactoe {
+             Properties properties = new Properties()
+             properties.load(project.rootProject.file('app/keystore/tictactoe.properties').newDataInputStream())
+             storeFile file(properties.getProperty('storeFile'))
+             keyAlias properties.getProperty('keyAlias')
+             storePassword properties.getProperty('storePassword')
+             keyPassword properties.getProperty('keyPassword')
+         }
+     }
 
     buildTypes {
         debug {
@@ -58,7 +58,7 @@ android {
             minifyEnabled false
             shrinkResources false
             debuggable true
-            // signingConfig signingConfigs.tictactoe
+             signingConfig signingConfigs.tictactoe
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
@@ -67,7 +67,7 @@ android {
             minifyEnabled true
             shrinkResources true
             debuggable false
-            // signingConfig signingConfigs.tictactoe
+             signingConfig signingConfigs.tictactoe
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

@@ -29,6 +29,7 @@ class _PlayGameState extends BaseState<PlayGame> {
     return buildScaffold(
       title: Strings.appName,
       body: SafeArea(
+        bottom: false,
         child: Center(
           child: Container(
             width: screenWidth,
@@ -37,14 +38,17 @@ class _PlayGameState extends BaseState<PlayGame> {
               builder: (context, child) {
                 return Stack(
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Players(),
-                        Board(),
-                        Reload(),
-                      ],
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: Doubles.sixteen),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Players(),
+                          Board(),
+                          Reload(),
+                        ],
+                      ),
                     ),
                     Result(),
                   ],

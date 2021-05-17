@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:tictactoe/constants/enums.dart';
 import 'package:tictactoe/constants/numbers.dart';
 import 'package:tictactoe/data/models/player_model.dart';
-import 'package:tictactoe/helpers/app_helper.dart';
 
 class GameNotifier with ChangeNotifier {
   final _scores = {PlayerType.ONE: -1, PlayerType.TWO: 1, PlayerType.DRAW: 0};
@@ -147,14 +146,16 @@ class GameNotifier with ChangeNotifier {
 
   void _updateBoard() {
     PlayerType winner = checkWinner();
-    if (winner == PlayerType.ONE) {
-      _playerOne.updateWins();
-      _winningMessage = _playerOne.winningMessage;
-    } else if (winner == PlayerType.TWO) {
-      _playerTwo.updateWins();
-      _winningMessage = _playerTwo.winningMessage;
-    } else if (winner == PlayerType.DRAW) {
-      _winningMessage = "Game is a draw.";
+    if (winner != null) {
+      if (winner == PlayerType.ONE) {
+        _playerOne.updateWins();
+        _winningMessage = _playerOne.winningMessage;
+      } else if (winner == PlayerType.TWO) {
+        _playerTwo.updateWins();
+        _winningMessage = _playerTwo.winningMessage;
+      } else if (winner == PlayerType.DRAW) {
+        _winningMessage = "Game is a draw.";
+      }
     }
 
     notifyListeners();

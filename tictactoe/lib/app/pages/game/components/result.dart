@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:tictactoe/app/pages/base/base_stateless.dart';
+import 'package:tictactoe/constants/assets.dart';
 import 'package:tictactoe/constants/colors.dart';
 import 'package:tictactoe/constants/numbers.dart';
 import 'package:tictactoe/notifiers/game_notifier.dart';
@@ -23,25 +25,46 @@ class Result extends BasePageStateless {
             color: AppColors.greyTransparent,
             child: Center(
               child: Container(
-                width: screenWidth * Percentage.ninety,
-                height: Doubles.twoForty,
-                padding: EdgeInsets.all(Doubles.eight),
+                width: screenWidth * Percentage.eightyFive,
+                padding: EdgeInsets.symmetric(
+                  horizontal: Doubles.twelve,
+                  vertical: Doubles.thirty,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.white,
-                  borderRadius: BorderRadius.circular(Doubles.twentyFour),
+                  borderRadius: BorderRadius.circular(Doubles.sixteen),
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
+                      width: Doubles.oneTwenty,
+                      height: Doubles.oneTwenty,
+                      child: SvgPicture.asset(AppIcon.winner),
+                    ),
+                    SizedBox(height: Doubles.twentyFour),
+                    Container(
                       child: Text(
-                        winningMessage,
+                        "Congrats! Ansh",
+                        style: TextStyle(
+                          color: AppColors.black,
+                          fontSize: Doubles.twentyFour,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: Doubles.twentyFour),
+                    Container(
+                      child: Text(
+                        "You won this game...",
                         style: TextStyle(
                           color: AppColors.black,
                           fontSize: Doubles.twentyFour,
                         ),
                       ),
                     ),
+                    SizedBox(height: Doubles.twentyFour),
                     ElevatedButton(
                       onPressed: () {
                         GameNotifier game = context.read<GameNotifier>();
@@ -50,11 +73,12 @@ class Result extends BasePageStateless {
                       style: ElevatedButton.styleFrom(
                         primary: AppColors.purple,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(Doubles.eight),
+                          borderRadius: BorderRadius.circular(Doubles.sixteen),
                         ),
                       ),
                       child: Container(
-                        width: Doubles.eighty,
+                        width: Doubles.twoHundred,
+                        height: Doubles.forty,
                         child: Center(
                           child: Text(
                             "Okay",

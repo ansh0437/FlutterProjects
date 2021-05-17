@@ -61,7 +61,7 @@ class Players extends BasePageStateless {
         children: [
           Container(child: player.icon),
           Text(
-            player.name.toUpperCase(),
+            player.name,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: Doubles.twenty,
