@@ -1,3 +1,6 @@
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tictactoe/constants/numbers.dart';
+
 class AppImage {
   static const String _imageAssets = "assets/images/";
 }
@@ -9,6 +12,16 @@ class AppIcon {
 
   static const String cross = "${_iconAssets}cross.svg";
   static const String circle = "${_iconAssets}circle.svg";
+
+  static final SvgPicture crossIcon = SvgPicture.asset(
+      "${_iconAssets}cross.svg",
+      width: Doubles.twentySix,
+      height: Doubles.twentySix);
+
+  static final SvgPicture circleIcon = SvgPicture.asset(
+      "${_iconAssets}circle.svg",
+      width: Doubles.thirty,
+      height: Doubles.thirty);
 }
 
 class AppJson {

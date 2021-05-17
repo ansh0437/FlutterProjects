@@ -1,11 +1,15 @@
-enum Player {
-  NONE,
-  AI,
-  HUMAN,
-  ONE,
-  TWO,
-  DRAW,
-}
+// enum Player {
+//   NONE,
+//   AI,
+//   HUMAN,
+//   ONE,
+//   TWO,
+//   DRAW,
+// }
+
+enum PlayerType { NONE, ONE, TWO, DRAW }
+
+enum PlayerIcon { X, O }
 
 enum ScoreType { Win, Lose, Draw }
 

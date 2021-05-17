@@ -4,6 +4,7 @@ import 'package:tictactoe/app/pages/base/base_stateful.dart';
 import 'package:tictactoe/app/pages/game/components/board.dart';
 import 'package:tictactoe/app/pages/game/components/players.dart';
 import 'package:tictactoe/app/pages/game/components/reload.dart';
+import 'package:tictactoe/app/pages/game/components/result.dart';
 import 'package:tictactoe/constants/numbers.dart';
 import 'package:tictactoe/constants/strings.dart';
 import 'package:tictactoe/notifiers/game_notifier.dart';
@@ -31,17 +32,21 @@ class _PlayGameState extends BaseState<PlayGame> {
         child: Center(
           child: Container(
             width: screenWidth,
-            padding: EdgeInsets.symmetric(vertical: Doubles.sixteen),
             child: ChangeNotifierProvider<GameNotifier>(
               create: (_) => GameNotifier(data),
               builder: (context, child) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                return Stack(
                   children: [
-                    Players(),
-                    Board(),
-                    Reload(),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Players(),
+                        Board(),
+                        Reload(),
+                      ],
+                    ),
+                    Result(),
                   ],
                 );
               },

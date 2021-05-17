@@ -8,6 +8,7 @@ import 'package:tictactoe/constants/enums.dart';
 import 'package:tictactoe/constants/numbers.dart';
 import 'package:tictactoe/constants/pages.dart';
 import 'package:tictactoe/constants/strings.dart';
+import 'package:tictactoe/data/models/player_model.dart';
 import 'package:tictactoe/helpers/app_helper.dart';
 import 'package:tictactoe/helpers/utils.dart';
 
@@ -50,14 +51,21 @@ class _ChooseSideState extends BaseState<ChooseSide> {
       }
     }
 
+    Player one = Player(
+      type: PlayerType.ONE,
+      name: _playerOneName,
+      iconType: _isCrossSelected ? PlayerIcon.X : PlayerIcon.O,
+    );
+
+    Player two = Player(
+      type: PlayerType.TWO,
+      name: _playerTwoName,
+      iconType: _isCrossSelected ? PlayerIcon.O : PlayerIcon.X,
+    );
+
     replacePage(
       Pages.playGame,
-      data: {
-        "game_type": _gameType,
-        "player_one": _playerOneName,
-        "player_two": _playerTwoName,
-        "player_one_side": _isCrossSelected
-      },
+      data: {"game_type": _gameType, "player_one": one, "player_two": two},
     );
   }
 
@@ -211,7 +219,8 @@ class _ChooseSideState extends BaseState<ChooseSide> {
   Widget _buildTwoPlayerBox() {
     return LayoutBuilder(
       builder: (context, constraints) {
-        double textFieldWidth = (constraints.maxWidth * Percentage.fifty) - Doubles.eight;
+        double textFieldWidth =
+            (constraints.maxWidth * Percentage.fifty) - Doubles.eight;
         return Container(
           width: constraints.maxWidth,
           child: Row(

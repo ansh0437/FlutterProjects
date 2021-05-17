@@ -4,6 +4,7 @@ import 'package:tictactoe/app/pages/base/base_stateless.dart';
 import 'package:tictactoe/constants/colors.dart';
 import 'package:tictactoe/constants/enums.dart';
 import 'package:tictactoe/constants/numbers.dart';
+import 'package:tictactoe/data/models/player_model.dart';
 import 'package:tictactoe/helpers/utils.dart';
 import 'package:tictactoe/notifiers/game_notifier.dart';
 
@@ -22,25 +23,34 @@ class Players extends BasePageStateless {
         builder: (context, game, child) => Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _playerBox(width: boxWidth, playerType: Player.ONE, game: game),
+            _playerBox(
+              width: boxWidth,
+              player: game.playerOne,
+              currentPlayerType: game.currentPlayer,
+            ),
             // _scoreBox(width: screenWidth * Percentage.twentyFive),
-            _playerBox(width: boxWidth, playerType: Player.TWO, game: game),
+            _playerBox(
+              width: boxWidth,
+              player: game.playerTwo,
+              currentPlayerType: game.currentPlayer,
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _playerBox(
-      {@required double width,
-      @required Player playerType,
-      @required GameNotifier game}) {
+  Widget _playerBox({
+    @required double width,
+    @required Player player,
+    @required PlayerType currentPlayerType,
+  }) {
     return Container(
       width: width,
-      height: Doubles.hundred,
+      height: Doubles.oneTwenty,
       padding: EdgeInsets.all(Doubles.eight),
       decoration: BoxDecoration(
-        color: playerType == game.currentPlayer
+        color: player.type == currentPlayerType
             ? AppColors.purpleLightest
             : AppColors.greyLightest,
         borderRadius: BorderRadius.circular(Doubles.twelve),
@@ -49,16 +59,21 @@ class Players extends BasePageStateless {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
-            child: playerType == Player.ONE
-                ? game.playerOneIcon
-                : game.playerTwoIcon,
-          ),
+          Container(child: player.icon),
           Text(
-            playerType == Player.ONE ? game.playerOneName : game.playerTwoName,
+            player.name.toUpperCase(),
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: Doubles.eighteen,
+              fontSize: Doubles.twenty,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Text(
+            player.gamesWon,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: AppColors.black,
+              fontSize: Doubles.sixteen,
               fontWeight: FontWeight.bold,
             ),
           ),
