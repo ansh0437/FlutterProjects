@@ -28,7 +28,8 @@ class GameNotifier with ChangeNotifier {
 
   Player _playerOne, _playerTwo;
 
-  String _winningMessage;
+  PlayerType _winnerType = PlayerType.NONE;
+  // String _winningMessage;
 
   int _spotsPlayed = Ints.zero;
 
@@ -40,9 +41,13 @@ class GameNotifier with ChangeNotifier {
     _playerTwo = data["player_two"];
   }
 
+  GameType get gameType => _gameType;
+
   PlayerType get currentPlayer => _whoseTurn;
 
-  String get winner => _winningMessage;
+  PlayerType get winnerType => _winnerType;
+
+  // String get winner => _winningMessage;
 
   Player get playerOne => _playerOne;
 
@@ -63,7 +68,8 @@ class GameNotifier with ChangeNotifier {
     _board = List.generate(Ints.nine, (idx) => PlayerType.NONE);
     _whoseTurn = PlayerType.ONE;
     _spotsPlayed = Ints.zero;
-    _winningMessage = null;
+    // _winningMessage = null;
+    _winnerType = PlayerType.NONE;
 
     notifyListeners();
   }
@@ -147,14 +153,15 @@ class GameNotifier with ChangeNotifier {
   void _updateBoard() {
     PlayerType winner = checkWinner();
     if (winner != null) {
+      _winnerType = winner;
       if (winner == PlayerType.ONE) {
         _playerOne.updateWins();
-        _winningMessage = _playerOne.winningMessage;
+        // _winningMessage = _playerOne.winningMessage;
       } else if (winner == PlayerType.TWO) {
         _playerTwo.updateWins();
-        _winningMessage = _playerTwo.winningMessage;
+        // _winningMessage = _playerTwo.winningMessage;
       } else if (winner == PlayerType.DRAW) {
-        _winningMessage = "Game is a draw.";
+        // _winningMessage = "Game is a draw.";
       }
     }
 

@@ -31,6 +31,10 @@ class AppColors {
   static Color green = _hexToColor("#83CE6E");
   static Color yellow = _hexToColor("#FFA000");
 
+  static Color winner = _hexToColor("#66BB6A");
+  static Color loser = _hexToColor("#EF5350");
+  static Color draw = _hexToColor("#FFA726");
+
   static Color _hexToColor(String code) {
     return new Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
   }

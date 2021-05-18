@@ -13,6 +13,7 @@ class AppIcon {
   static const String cross = "${_iconAssets}cross.svg";
   static const String circle = "${_iconAssets}circle.svg";
 
+  static const String gameOver = "${_iconAssets}game_over.svg";
   static const String winner = "${_iconAssets}winner.svg";
 
   static final SvgPicture crossIcon = SvgPicture.asset(
